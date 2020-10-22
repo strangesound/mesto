@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    margin-left: 4%;
+    margin-right: 4%;
+    background-color: black;
+    color: white;
+    box-sizing: border-box;
+    display: block;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    position: relative;
+  }

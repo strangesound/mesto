@@ -1,0 +1,100 @@
+/* Form */
+.form-popup {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    transition: opacity 500ms;
+    margin: auto;
+    display: none;
+    align-items: left;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .form-popup__form {
+    z-index: 999;
+    margin: auto;
+    max-width: 430px;
+    max-height: 330px;
+    padding: 36px;
+    background: #ffffff;
+    opacity: 100%;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    display: flex;
+    position: relative;
+    /* align-items: center; */
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .form-popup__head {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: 0;
+  }
+  
+  .form-popup__btn {
+    margin-top: 48px;
+    width: 358px;
+    height: 50px;
+    background: #000000;
+    border-radius: 2px;
+    color: white;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    transition: 0.3s;
+  }
+  
+  .form-popup__btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+  }
+  
+  .form-popup__contact-wrapper {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border: 0;
+  }
+  
+  .form-popup__contact-info {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    /* border-bottom: rgba(0, 0, 0, 0.2); */
+  }
+  
+  .form-popup__close-btn {
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/plus-sign.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    /* background-color: red; */
+    z-index: 1000;
+    transform: rotate(45deg);
+    transition: 0.3s;
+  }
+  
+  .form-popup__close-btn:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
