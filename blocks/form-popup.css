@@ -14,7 +14,6 @@
   align-items: left;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
-  
 }
 
 .form-popup__form {
@@ -111,7 +110,6 @@
   }
   .form-popup__close-btn {
     right: 0px;
-    top:-40px
-
+    top: -40px;
   }
 }

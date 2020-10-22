@@ -18,8 +18,6 @@
 
 .photo-grid__item {
   width: 100%;
-  /* max-width: 282px; */
-  min-width: ;
   height: 361px;
   object-fit: cover;
   overflow: hidden;
