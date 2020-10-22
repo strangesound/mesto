@@ -1,0 +1,38 @@
+.photo-grid__item {
+  width: 100%;
+  /* max-width: 282px; */
+  min-width: ;
+  height: 361px;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.photo-grid__image {
+  width: 100%;
+  max-height: 282px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.photo-grid__title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 25px 20px 30px;
+}
+
+.photo-grid__name {
+  margin: 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: black;
+  max-width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

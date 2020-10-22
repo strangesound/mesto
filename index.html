@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+  </head>
+  <body>
+    <!-- Форма -->
+    <section class="form-popup">
+      <form class="form-popup__form">
+        <h2 class="form-popup__head">Редактировать профиль</h2>
+        <fieldset class="form-popup__contact-wrapper">
+          <label for="first-name">
+            <input class="form-popup__contact-info" type="Имя пользователя" name="firstname" id="first-name"
+          /> </label>
+
+          <label for="job-name">
+            <input class="form-popup__contact-info" type="Должность" name="jobname" id="job-name"/>
+          </label>
+        </fieldset>
+        <button class="form-popup__btn" type="submit" value="Сохранить">Сохранить</button>
+      </form>
+    </section>
+
+    <header class="header">
+      <img
+        src="./images/mesto-logo.svg"
+        alt="Логотип Место"
+        class="header__logo"
+      />
+
+      <div class="header__line"></div>
+    </header>
+
+    <page class="main">
+      <section class="avatar">
+        <div class="avatar__person-wrapper">
+          <img
+            src="./images/avatar.jpg"
+            alt="Жак Кусто"
+            class="avatar__kusto"
+          />
+          <div class="avatar__name-wrapper">
+            <div class="avatar__name-icon-wrapper">
+              <h1 class="avatar__head">Жак-Ив Кусто</h1>
+              <div class="avatar__edit-icon"></div>
+            </div>
+            <p class="avatar__subtitle">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="avatar__add-button"></button>
+      </section>
+
+      <section class="photo-grid">
+        <div class="photo-grid__item">
+          <img src="./images/image1.jpg" alt="" class="photo-grid__image" />
+          <div class="photo-grid__title">
+            <h2 class="photo-grid__name">Карачаевск</h2>
+            <img class="photo-grid__like" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="photo-grid__item">
+          <img src="./images/image1.jpg" alt="" class="photo-grid__image" />
+          <div class="photo-grid__title">
+            <h2 class="photo-grid__name">Карачаевск</h2>
+            <img class="photo-grid__like" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="photo-grid__item">
+          <img src="./images/image1.jpg" alt="" class="photo-grid__image" />
+          <div class="photo-grid__title">
+            <h2 class="photo-grid__name">Карачаевск</h2>
+            <img class="photo-grid__like" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="photo-grid__item">
+          <img src="./images/image1.jpg" alt="" class="photo-grid__image" />
+          <div class="photo-grid__title">
+            <h2 class="photo-grid__name">Карачаевск</h2>
+            <img class="photo-grid__like" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="photo-grid__item">
+          <img src="./images/image1.jpg" alt="" class="photo-grid__image" />
+          <div class="photo-grid__title">
+            <h2 class="photo-grid__name">Карачаевск</h2>
+            <img class="photo-grid__like" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+        <div class="photo-grid__item">
+          <img src="./images/image1.jpg" alt="" class="photo-grid__image" />
+          <div class="photo-grid__title">
+            <h2 class="photo-grid__name">Карачаевск</h2>
+            <img class="photo-grid__like" src="./images/like.svg" alt="Лайк" />
+          </div>
+        </div>
+      </section>
+    </page>
+  </body>
+</html>
