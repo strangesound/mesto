@@ -1,0 +1,19 @@
+.avatar {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: raw;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+
+@media screen and (max-device-width: 768px) {
+  .avatar {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+  }
+}

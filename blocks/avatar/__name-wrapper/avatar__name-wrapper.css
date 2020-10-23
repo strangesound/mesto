@@ -1,0 +1,15 @@
+.avatar__name-wrapper {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+@media screen and (max-device-width: 768px) {
+  .avatar__name-wrapper {
+    margin: 0;
+    justify-content: top;
+    max-width: 80%;
+  }
+}

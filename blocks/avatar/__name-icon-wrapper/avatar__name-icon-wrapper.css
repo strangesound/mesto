@@ -1,0 +1,14 @@
+.avatar__name-icon-wrapper {
+  margin: 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media screen and (max-device-width: 768px) {
+  .avatar__name-icon-wrapper {
+    display: flex;
+    align-items: top;
+  }
+}

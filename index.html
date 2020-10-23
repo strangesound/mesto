@@ -6,39 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
   </head>
-  <body>
-    <!-- Форма -->
-    <section class="form-popup">
-      <form class="form-popup__form">
-        <div class="form-popup__close-btn"></div>
-        <h2 class="form-popup__head">Редактировать профиль</h2>
-        <fieldset class="form-popup__contact-wrapper">
-          <label for="first-name">
-            <input
-              class="form-popup__contact-info"
-              placeholder="Имя"
-              type="text"
-              name="firstname"
-              id="first-name"
-            />
-          </label>
-
-          <label for="job-name">
-            <input
-              class="form-popup__contact-info"
-              placeholder="Должность"
-              type="text"
-              name="jobname"
-              id="job-name"
-            />
-          </label>
-        </fieldset>
-        <button class="form-popup__btn" type="submit" value="Сохранить">
-          Сохранить
-        </button>
-      </form>
-    </section>
-
+  <body class="body">
     <header class="header">
       <img
         src="./images/mesto-logo.svg"
@@ -48,7 +16,7 @@
 
       <div class="header__line"></div>
     </header>
-    <div class="main">
+    <main class="main">
       <section class="avatar">
         <div class="avatar__person-wrapper">
           <img
@@ -112,17 +80,40 @@
         </div>
       </section>
 
-
       <section class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
-
       </section>
+    </main>
 
-    </div>
+    <!-- Форма -->
+    <section class="form-popup">
+      <form class="form-popup__form">
+        <div class="form-popup__close-btn"></div>
+        <h2 class="form-popup__head">Редактировать профиль</h2>
+        <fieldset class="form-popup__contact-wrapper">
+          <label>
+            <input
+              class="form-popup__contact-info form-popup__name"
+              placeholder="Имя"
+              type="text"
+              name="firstname"
+            />
+          </label>
 
-
-
-
+          <label>
+            <input
+              class="form-popup__contact-info form-popup__job"
+              placeholder="Должность"
+              type="text"
+              name="job-name"
+            />
+          </label>
+        </fieldset>
+        <button class="form-popup__btn" type="submit" value="Сохранить">
+          Сохранить
+        </button>
+      </form>
+    </section>
     <script src="./scripts/script.js"></script>
   </body>
 </html>

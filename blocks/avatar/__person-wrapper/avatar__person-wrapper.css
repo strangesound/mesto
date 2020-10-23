@@ -1,0 +1,13 @@
+.avatar__person-wrapper {
+  max-width: 822px;
+  display: flex;
+}
+
+@media screen and (max-device-width: 768px) {
+
+  .avatar__person-wrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+  }
+}

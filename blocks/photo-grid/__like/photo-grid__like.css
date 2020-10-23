@@ -1,0 +1,7 @@
+.photo-grid__like {
+  transition: 0.3s;
+}
+
+.photo-grid__like:hover {
+  opacity: 0.6;
+}
