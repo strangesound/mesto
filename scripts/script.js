@@ -1,33 +1,30 @@
 let editButton = document.querySelector('.avatar__edit-icon');
 let closeButton = document.querySelector('.form-popup__close-btn');
 let popUpForm = document.querySelector('.form-popup');
-let popupButton = document.querySelector('.form-popup__btn');
-let formNameInput = document.querySelector('.form-popup__name');
-let formJobInput = document.querySelector('.form-popup__job');
+let formNameInput = document.querySelector('.form-popup__contact-info');
+let formJobInput = document.querySelector('.form-popup__job-info');
 let pageName = document.querySelector('.avatar__head');
 let pageJob = document.querySelector('.avatar__subtitle');
 let formElement = document.querySelector('.form-popup__form')
 
 
-function addPopup() {
-    popUpForm.classList.add('popup_opened')
-    formNameInput.value = pageName.textContent;;
-    formJobInput.value = pageJob.textContent;
-}
-
-function clsPopup() {
-    popUpForm.classList.remove('popup_opened')
+function openClosePopup() {
+    if (popUpForm.classList.contains('popup_opened')) {
+        popUpForm.classList.remove('popup_opened')
+    }
+    else {
+        popUpForm.classList.add('popup_opened')
+    }
 }
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
-    pageName.textContent = formNameInput.value
-    pageJob.textContent = formJobInput.value
-    clsPopup()
+    pageName.textContent = formNameInput.value;
+    pageJob.textContent = formJobInput.value;
+    openClosePopup()
 }
 
 
 formElement.addEventListener('submit', formSubmitHandler);
-editButton.addEventListener('click', addPopup);
-closeButton.addEventListener('click', clsPopup);
-// popUpForm.addEventListener('click', clsPopup);
+editButton.addEventListener('click', openClosePopup);
+closeButton.addEventListener('click', openClosePopup);

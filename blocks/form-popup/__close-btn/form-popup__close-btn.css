@@ -1,7 +1,10 @@
 .form-popup__close-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
   width: 20px;
   height: 20px;
-  background-image: url(../images/plus-sign.svg);
+  background-image: url(../../../images/plus-sign.svg);
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -13,7 +16,12 @@
   transition: 0.3s;
 }
 
-@media screen and (max-device-width: 768px) {
+.form-popup__close-btn:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
   .form-popup__close-btn {
     right: 0px;
     top: -40px;

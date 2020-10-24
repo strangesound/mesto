@@ -3,4 +3,14 @@
     max-width: 882px;
     margin: auto;
     display: block;
+    border-bottom: #545454 2px solid;
   }
+  @media screen and (max-width: 768px) {
+    .header {
+      border-bottom: #545454 1px solid;
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+  
+  }
+  
