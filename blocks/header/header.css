@@ -3,11 +3,11 @@
     max-width: 882px;
     margin: auto;
     display: block;
-    border-bottom: #545454 2px solid;
+    border-bottom: 2px solid rgba(84, 84, 84, .7);
   }
   @media screen and (max-width: 768px) {
     .header {
-      border-bottom: #545454 1px solid;
+      border-bottom: 2px solid rgba(84, 84, 84, .7);
       margin-left: -20px;
       margin-right: -20px;
     }

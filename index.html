@@ -7,10 +7,6 @@
     <title>Mesto</title>
   </head>
 
-<!-- Сергей, привет! Спасибо, отличное ревью. 
-  Мне только активно не нравится nested bem, 
-  но нашел bem-create-css для автоматизации-->
-
   <body class="body">
     <header class="header">
       <img
@@ -30,12 +26,12 @@
           <div class="avatar__name-wrapper">
             <div class="avatar__name-icon-wrapper">
               <h1 class="avatar__head">Жан Жак Кусто</h1>
-              <button class="avatar__edit-icon"></button>
+              <button type="button"  class="avatar__edit-icon"></button>
             </div>
             <p class="avatar__subtitle">Исследователь океана</p>
           </div>
         </div>
-        <button class="avatar__add-button"></button>
+        <button type="button" class="avatar__add-button"></button>
       </section>
 
       <section class="photo-grid">
@@ -43,42 +39,42 @@
           <img src="./images/image1.jpg" alt="Карачаевск" class="photo-grid__image" />
           <div class="photo-grid__title">
             <h2 class="photo-grid__name">Карачаевск</h2>
-            <button class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
+            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/image2.jpg" alt="Эльбрус" class="photo-grid__image" />
           <div class="photo-grid__title">
             <h2 class="photo-grid__name">Эльбрус</h2>
-            <button class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
+            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/image3.jpg" alt="Донбай" class="photo-grid__image" />
           <div class="photo-grid__title">
             <h2 class="photo-grid__name">Донбай</h2>
-            <button class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
+            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/image1.jpg" alt="Карачаевск" class="photo-grid__image" />
           <div class="photo-grid__title">
             <h2 class="photo-grid__name">Карачаевск</h2>
-            <button class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
+            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/image2.jpg" alt="Эльбрус" class="photo-grid__image" />
           <div class="photo-grid__title">
             <h2 class="photo-grid__name">Эльбрус</h2>
-            <button class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
+            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
           </div>
         </div>
         <div class="photo-grid__item">
           <img src="./images/image3.jpg" alt="Донбай" class="photo-grid__image" />
           <div class="photo-grid__title">
             <h2 class="photo-grid__name">Донбай</h2>
-            <button class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
+            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
           </div>
         </div>
       </section>
@@ -87,19 +83,19 @@
 
     <!-- Форма -->
     <section class="form-popup">
-      <form class="form-popup__form" name="formNameJob">
+      <form class="form-popup__form" name="form-name-job">
         <button class="form-popup__close-btn" type="button"></button>
         <h2 class="form-popup__head">Редактировать профиль</h2>
         <fieldset class="form-popup__contact-wrapper">
             <input
-              class="form-popup__contact-info"
+              class="form-popup__contact-info form-popup__contact-info_name"
               placeholder="Имя"
               type="text"
-              name="firstname"
+              name="first-name"
             />
 
             <input
-              class="form-popup__job-info"
+              class="form-popup__contact-info form-popup__contact-info_job"
               placeholder="Должность"
               type="text"
               name="job-name"

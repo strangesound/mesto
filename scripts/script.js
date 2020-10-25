@@ -1,11 +1,11 @@
 let editButton = document.querySelector('.avatar__edit-icon');
 let closeButton = document.querySelector('.form-popup__close-btn');
 let popUpForm = document.querySelector('.form-popup');
-let formNameInput = document.querySelector('.form-popup__contact-info');
-let formJobInput = document.querySelector('.form-popup__job-info');
+let formNameInput = document.querySelector('.form-popup__contact-info_name');
+let formJobInput = document.querySelector('.form-popup__contact-info_job');
 let pageName = document.querySelector('.avatar__head');
 let pageJob = document.querySelector('.avatar__subtitle');
-let formElement = document.querySelector('.form-popup__form')
+let formElement = document.querySelector('.form-popup__form');
 
 
 function openClosePopup() {
@@ -14,14 +14,17 @@ function openClosePopup() {
     }
     else {
         popUpForm.classList.add('popup_opened')
+        formNameInput.value = pageName.textContent;
+        formJobInput.value = pageJob.textContent;
     }
 }
 
-function formSubmitHandler(evt) {
+function formSubmitHandler(evt) {   
     evt.preventDefault();
     pageName.textContent = formNameInput.value;
     pageJob.textContent = formJobInput.value;
     openClosePopup()
+
 }
 
 
