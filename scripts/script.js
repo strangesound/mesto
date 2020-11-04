@@ -1,16 +1,20 @@
 const editButton = document.querySelector('.avatar__edit-icon');
-const closeButton = document.querySelector('.form-popup__close-btn');
-const popUpForm = document.querySelector('.form-popup');
+const closeButton = document.querySelectorAll('.form-popup__close-btn');
+const popUpForm = document.querySelector('.form-popup_type_edit');
 const formNameInput = document.querySelector('.form-popup__contact-info_name');
 const formJobInput = document.querySelector('.form-popup__contact-info_job');
 const pageName = document.querySelector('.avatar__head');
 const pageJob = document.querySelector('.avatar__subtitle');
-const formElement = document.querySelector('.form-popup__form');
+const formElement = document.querySelector('.form-popup__form-edit');
+
 const cardTemplate = document.querySelector('#card__create').content;
 const cardSection = document.querySelector('.photo-grid');
 
-
-
+const formElementCardWrapper = document.querySelector('.form-popup_type_add-card');
+const cardFormAddButton = document.querySelector('.avatar__add-button');
+const cardName = document.querySelector('.form-popup__card_name');
+const cardImgLink = document.querySelector('.form-popup__img-link');
+const formElementCard = document.querySelector('.form-popup__form-add-card');
 
 const initialCards = [
     {
@@ -40,22 +44,39 @@ const initialCards = [
     
 ];
 
-function openClosePopup() {
-    if (popUpForm.classList.contains('popup_opened')) {
-        popUpForm.classList.remove('popup_opened')
-    }
-    else {
-        popUpForm.classList.add('popup_opened')
-        formNameInput.value = pageName.textContent;
-        formJobInput.value = pageJob.textContent;
-    }
+function closePopup(popup) {
+    let closestElement = popup.closest('.form-popup');
+    closestElement.classList.remove("popup_opened");
+    // console.log(popup)
+}
+
+function openPopup(popup) {
+    popup.classList.add('popup_opened')
+}
+
+function fillNameJob(popup) {
+    formNameInput.value = pageName.textContent;
+    formJobInput.value = pageJob.textContent;
+    openPopup(popup)
 }
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
     pageName.textContent = formNameInput.value;
     pageJob.textContent = formJobInput.value;
-    openClosePopup()
+    // console.log(evt)
+    closePopup(evt.target);
+}
+
+function addCardFormSubmitHandler(evt) {
+    evt.preventDefault();
+    let newCardArray = {
+        name: cardName.value,
+        link: cardImgLink.value
+    }
+    // console.log(newCardArray, formElementCard)
+    cardSection.prepend(createCard(newCardArray))
+    closePopup(evt.target);
 
 }
 
@@ -68,17 +89,39 @@ function createCard(arr) {
     const likeButton = cardElement.querySelector('.photo-grid__like');
     likeButton.addEventListener('click', function (evt) {
         evt.target.classList.toggle('photo-grid__like_active');
-        console.log(evt)
+        // console.log(evt)
     })
-    cardSection.append(cardElement);
+
+    const cardDeleteBtn = cardElement.querySelector('.photo-grid__delete-btn');
+    cardDeleteBtn.addEventListener('click', () => deleteCard(cardDeleteBtn))
+
+    return cardElement;
+
 
 };
 
+function deleteCard(item) {
+    // console.log(item)
+    const listItem = item.closest('.photo-grid__item');
+    // console.log(listItem)
+    listItem.remove();
+    // const cardDeleteBtn = document.querySelectorAll('.photo-grid__delete-btn');
+
+};
+
+// Создание изначального массива
 initialCards.forEach(element => {
-    createCard(element)
+    cardSection.append(createCard(element))
 });
 
+// Обработчики событий
 
 formElement.addEventListener('submit', formSubmitHandler);
-editButton.addEventListener('click', openClosePopup);
-closeButton.addEventListener('click', openClosePopup);
+formElementCard.addEventListener('submit', addCardFormSubmitHandler);
+
+editButton.addEventListener('click', () => fillNameJob(popUpForm));
+cardFormAddButton.addEventListener('click', () => openPopup(formElementCardWrapper));
+
+closeButton.forEach(element => {
+    element.addEventListener('click', () => closePopup(element));
+})

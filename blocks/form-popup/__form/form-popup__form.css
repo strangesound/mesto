@@ -2,6 +2,7 @@
   z-index: 999;
   margin: auto;
   max-width: 430px;
+  min-width: 350px;
   /* min-height: 330px; */
   padding: 36px;
   background: #ffffff;
@@ -18,6 +19,7 @@
 @media screen and (max-width: 768px) {
   .form-popup__form {
     max-width: 55%;
+    min-width: 30%;
   }
 
 }

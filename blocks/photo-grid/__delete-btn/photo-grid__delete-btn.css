@@ -2,9 +2,11 @@
   position: absolute;
   right: 15px;
   top: 18px;
+  /* width: 10px;
+  height: 10px; */
   border: none;
   padding: 0;
-  background-color: transparent;
+  background-color:transparent;
   transition: 0.3s;
 }
 

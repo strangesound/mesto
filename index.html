@@ -39,9 +39,9 @@
       </section>
     </main>
 
-    <!-- Форма -->
-    <section class="form-popup">
-      <form class="form-popup__form" name="form-name-job">
+    <!-- Форма редактирования имени -->
+    <section class="form-popup form-popup_type_edit">
+      <form class="form-popup__form form-popup__form-edit" name="form-name-job">
         <button class="form-popup__close-btn" type="button"></button>
         <h2 class="form-popup__head">Редактировать профиль</h2>
         <fieldset class="form-popup__contact-wrapper">
@@ -66,26 +66,26 @@
     </section>
 
     <!-- Форма добавления карточки -->
-    <section class="card-add-popup">
-      <form class="card-add-popup__form" name="card-add-name-job">
-        <button class="card-add-popup__close-btn" type="button"></button>
-        <h2 class="card-add-popup__head">Новое место</h2>
-        <fieldset class="card-add-popup__contact-wrapper">
+    <section class="form-popup form-popup_type_add-card">
+      <form class="form-popup__form form-popup__form-add-card" name="card-add-name">
+        <button class="form-popup__close-btn" type="button"></button>
+        <h2 class="form-popup__head">Новое место</h2>
+        <fieldset class="form-popup__contact-wrapper">
           <input
-            class="card-add-popup__contact-info card-add-popup__contact-info_name"
+            class="form-popup__contact-info form-popup__card_name"
             placeholder="Название"
             type="text"
             name="first-name"
           />
 
           <input
-            class="card-add-popup__contact-info card-add-popup__contact-info_job"
+            class="form-popup__contact-info form-popup__img-link"
             placeholder="Ссылка на картинку"
             type="text"
             name="job-name"
           />
         </fieldset>
-        <button class="card-add-popup__btn" type="submit" value="Сохранить">
+        <button class="form-popup__btn" type="submit" value="Сохранить">
           Создать
         </button>
       </form>
