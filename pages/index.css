@@ -31,3 +31,4 @@
 @import url("../blocks/photo-grid/__name/photo-grid__name.css");
 @import url("../blocks/photo-grid/__title/photo-grid__title.css");
 @import url("../blocks/photo-grid/photo-grid.css");
+@import url("../blocks/photo-grid/__delete-btn/photo-grid__delete-btn.css");

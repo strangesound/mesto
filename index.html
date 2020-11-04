@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
   </head>
-<!-- Сергей, привет! Вроде получилось все поправить. 
-  По атриибуту name не было доступы к value, так и не понял, как сделать. 
-  Сделал с модификатором. -->
-  
+
   <body class="body">
     <header class="header">
       <img
@@ -29,59 +26,17 @@
           <div class="avatar__name-wrapper">
             <div class="avatar__name-icon-wrapper">
               <h1 class="avatar__head">Жан Жак Кусто</h1>
-              <button type="button"  class="avatar__edit-icon"></button>
+              <button type="button" class="avatar__edit-icon"></button>
             </div>
             <p class="avatar__subtitle">Исследователь океана</p>
           </div>
         </div>
         <button type="button" class="avatar__add-button"></button>
       </section>
-
+<!-- Карточки -->
       <section class="photo-grid">
-        <div class="photo-grid__item">
-          <img src="./images/image1.jpg" alt="Карачаевск" class="photo-grid__image" />
-          <div class="photo-grid__title">
-            <h2 class="photo-grid__name">Карачаевск</h2>
-            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
-          </div>
-        </div>
-        <div class="photo-grid__item">
-          <img src="./images/image2.jpg" alt="Эльбрус" class="photo-grid__image" />
-          <div class="photo-grid__title">
-            <h2 class="photo-grid__name">Эльбрус</h2>
-            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
-          </div>
-        </div>
-        <div class="photo-grid__item">
-          <img src="./images/image3.jpg" alt="Донбай" class="photo-grid__image" />
-          <div class="photo-grid__title">
-            <h2 class="photo-grid__name">Донбай</h2>
-            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
-          </div>
-        </div>
-        <div class="photo-grid__item">
-          <img src="./images/image1.jpg" alt="Карачаевск" class="photo-grid__image" />
-          <div class="photo-grid__title">
-            <h2 class="photo-grid__name">Карачаевск</h2>
-            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
-          </div>
-        </div>
-        <div class="photo-grid__item">
-          <img src="./images/image2.jpg" alt="Эльбрус" class="photo-grid__image" />
-          <div class="photo-grid__title">
-            <h2 class="photo-grid__name">Эльбрус</h2>
-            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
-          </div>
-        </div>
-        <div class="photo-grid__item">
-          <img src="./images/image3.jpg" alt="Донбай" class="photo-grid__image" />
-          <div class="photo-grid__title">
-            <h2 class="photo-grid__name">Донбай</h2>
-            <button type="button" class="photo-grid__like"> <img src="./images/like.svg" alt="Лайк" /></button>
-          </div>
-        </div>
+        
       </section>
-
     </main>
 
     <!-- Форма -->
@@ -90,28 +45,78 @@
         <button class="form-popup__close-btn" type="button"></button>
         <h2 class="form-popup__head">Редактировать профиль</h2>
         <fieldset class="form-popup__contact-wrapper">
-            <input
-              class="form-popup__contact-info form-popup__contact-info_name"
-              placeholder="Имя"
-              type="text"
-              name="first-name"
-            />
+          <input
+            class="form-popup__contact-info form-popup__contact-info_name"
+            placeholder="Имя"
+            type="text"
+            name="first-name"
+          />
 
-            <input
-              class="form-popup__contact-info form-popup__contact-info_job"
-              placeholder="Должность"
-              type="text"
-              name="job-name"
-            />
+          <input
+            class="form-popup__contact-info form-popup__contact-info_job"
+            placeholder="Должность"
+            type="text"
+            name="job-name"
+          />
         </fieldset>
         <button class="form-popup__btn" type="submit" value="Сохранить">
           Сохранить
         </button>
       </form>
     </section>
+
+    <!-- Форма добавления карточки -->
+    <section class="card-add-popup">
+      <form class="card-add-popup__form" name="card-add-name-job">
+        <button class="card-add-popup__close-btn" type="button"></button>
+        <h2 class="card-add-popup__head">Новое место</h2>
+        <fieldset class="card-add-popup__contact-wrapper">
+          <input
+            class="card-add-popup__contact-info card-add-popup__contact-info_name"
+            placeholder="Название"
+            type="text"
+            name="first-name"
+          />
+
+          <input
+            class="card-add-popup__contact-info card-add-popup__contact-info_job"
+            placeholder="Ссылка на картинку"
+            type="text"
+            name="job-name"
+          />
+        </fieldset>
+        <button class="card-add-popup__btn" type="submit" value="Сохранить">
+          Создать
+        </button>
+      </form>
+    </section>
+
+
+
+    <!-- Футер -->
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
+    
+    <!-- Шаблон карточки -->
+    <template id="card__create">
+      <div class="photo-grid__item">
+        <button class="photo-grid__delete-btn">
+          <img src="./images/trash.svg" alt="Удалить" />
+        </button>
+        <img
+          src=""
+          alt=""
+          class="photo-grid__image"
+        />
+        <div class="photo-grid__title">
+          <h2 class="photo-grid__name"></h2>
+          <button type="button" class="photo-grid__like">
+          </button>
+        </div>
+      </div>
+    </template>
+
     <script src="./scripts/script.js"></script>
   </body>
 </html>
