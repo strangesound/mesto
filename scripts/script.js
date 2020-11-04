@@ -1,5 +1,5 @@
 const editButton = document.querySelector('.avatar__edit-icon');
-const closeButton = document.querySelectorAll('.form-popup__close-btn');
+const closeButtons = document.querySelectorAll('.form-popup__close-btn');
 const popUpForm = document.querySelector('.form-popup_type_edit');
 const formNameInput = document.querySelector('.form-popup__contact-info_name');
 const formJobInput = document.querySelector('.form-popup__contact-info_job');
@@ -15,6 +15,11 @@ const cardFormAddButton = document.querySelector('.avatar__add-button');
 const cardName = document.querySelector('.form-popup__card_name');
 const cardImgLink = document.querySelector('.form-popup__img-link');
 const formElementCard = document.querySelector('.form-popup__form-add-card');
+
+const imageOpenerSection = document.querySelector('.form-popup__image-opener');
+const imageBig = document.querySelector('.form-popup__image-big');
+const imageCaption = document.querySelector('.form-popup__image-caption');
+
 
 const initialCards = [
     {
@@ -41,11 +46,11 @@ const initialCards = [
         name: 'Байкал',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     },
-    
+
 ];
 
 function closePopup(popup) {
-    let closestElement = popup.closest('.form-popup');
+    const closestElement = popup.closest('.form-popup');
     closestElement.classList.remove("popup_opened");
     // console.log(popup)
 }
@@ -70,13 +75,15 @@ function formSubmitHandler(evt) {
 
 function addCardFormSubmitHandler(evt) {
     evt.preventDefault();
-    let newCardArray = {
+    const newCardArray = {
         name: cardName.value,
         link: cardImgLink.value
     }
     // console.log(newCardArray, formElementCard)
     cardSection.prepend(createCard(newCardArray))
     closePopup(evt.target);
+    evt.target.reset()
+
 
 }
 
@@ -95,8 +102,15 @@ function createCard(arr) {
     const cardDeleteBtn = cardElement.querySelector('.photo-grid__delete-btn');
     cardDeleteBtn.addEventListener('click', () => deleteCard(cardDeleteBtn))
 
-    return cardElement;
+    const imageOpener = cardElement.querySelector('.photo-grid__image');
+    imageOpener.addEventListener('click', function (evt) {
+        // console.log(evt)
+        imageBig.src = arr.link;
+        imageCaption.textContent = arr.name;
+        openPopup(imageOpenerSection)  
+    })
 
+    return cardElement;
 
 };
 
@@ -122,6 +136,6 @@ formElementCard.addEventListener('submit', addCardFormSubmitHandler);
 editButton.addEventListener('click', () => fillNameJob(popUpForm));
 cardFormAddButton.addEventListener('click', () => openPopup(formElementCardWrapper));
 
-closeButton.forEach(element => {
+closeButtons.forEach(element => {
     element.addEventListener('click', () => closePopup(element));
 })

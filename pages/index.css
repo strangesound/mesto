@@ -32,3 +32,7 @@
 @import url("../blocks/photo-grid/__title/photo-grid__title.css");
 @import url("../blocks/photo-grid/photo-grid.css");
 @import url("../blocks/photo-grid/__delete-btn/photo-grid__delete-btn.css");
+@import url("../blocks/form-popup/__image_big/form-popup__image-big.css");
+@import url("../blocks/form-popup/__image-opener-wrapper/form-popup__image-opener-wrapper.css");
+@import url("../blocks/form-popup/__image-caption/form-popup__image-caption.css");
+

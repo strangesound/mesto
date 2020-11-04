@@ -33,10 +33,8 @@
         </div>
         <button type="button" class="avatar__add-button"></button>
       </section>
-<!-- Карточки -->
-      <section class="photo-grid">
-        
-      </section>
+      <!-- Карточки -->
+      <section class="photo-grid"></section>
     </main>
 
     <!-- Форма редактирования имени -->
@@ -67,7 +65,10 @@
 
     <!-- Форма добавления карточки -->
     <section class="form-popup form-popup_type_add-card">
-      <form class="form-popup__form form-popup__form-add-card" name="card-add-name">
+      <form
+        class="form-popup__form form-popup__form-add-card"
+        name="card-add-name"
+      >
         <button class="form-popup__close-btn" type="button"></button>
         <h2 class="form-popup__head">Новое место</h2>
         <fieldset class="form-popup__contact-wrapper">
@@ -91,28 +92,32 @@
       </form>
     </section>
 
-
+    <!-- Попап картинки -->
+    <section class="form-popup form-popup__image-opener">
+      <figure class="form-popup__image-opener-wrapper">
+        <button class="form-popup__close-btn" type="button"></button>
+        <img src="" alt="" class="form-popup__image-big" />
+        <figcaption class="form-popup__image-caption">
+          Тестовая подпись
+        </figcaption>
+      </figure>
+    </section>
 
     <!-- Футер -->
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    
+
     <!-- Шаблон карточки -->
     <template id="card__create">
       <div class="photo-grid__item">
         <button class="photo-grid__delete-btn">
           <img src="./images/trash.svg" alt="Удалить" />
         </button>
-        <img
-          src=""
-          alt=""
-          class="photo-grid__image"
-        />
+        <img src="" alt="" class="photo-grid__image" />
         <div class="photo-grid__title">
           <h2 class="photo-grid__name"></h2>
-          <button type="button" class="photo-grid__like">
-          </button>
+          <button type="button" class="photo-grid__like"></button>
         </div>
       </div>
     </template>

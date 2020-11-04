@@ -7,9 +7,11 @@
   left: 0;
   right: 0;
   z-index: 998;
-  transition: opacity .5s;
+  transition: opacity .2s;
   margin: auto;
-  display: none;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
   align-items: left;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
