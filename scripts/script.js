@@ -50,8 +50,7 @@ const initialCards = [
 ];
 
 function closePopup(popup) {
-    const closestElement = popup.closest('.form-popup');
-    closestElement.classList.remove("form-popup_opened");
+    popup.classList.remove("form-popup_opened");
 }
 
 function openPopup(popup) {
@@ -61,14 +60,14 @@ function openPopup(popup) {
 function fillNameJob(popup) {
     formNameInput.value = pageName.textContent;
     formJobInput.value = pageJob.textContent;
-    openPopup(popup)
+    openPopup(formEditUserInfoWrapper)
 }
 
 function editFormSubmitHandler(evt) {
     evt.preventDefault();
     pageName.textContent = formNameInput.value;
     pageJob.textContent = formJobInput.value;
-    closePopup(evt.target);
+    closePopup(formEditUserInfoWrapper);
 }
 
 function addCardFormSubmitHandler(evt) {
@@ -78,17 +77,16 @@ function addCardFormSubmitHandler(evt) {
         link: cardImgLink.value
     }
     cardSection.prepend(createCard(newCardArray))
-    closePopup(evt.target);
+    closePopup(formAddCardWrapper);
     evt.target.reset()
-
-
 }
 
 function createCard(arr) {
     const cardElement = cardTemplate.cloneNode(true);
-    cardElement.querySelector('.photo-grid__image').src = arr.link;
-    cardElement.querySelector('.photo-grid__image').alt = arr.name;
-    cardElement.querySelector('.photo-grid__name').textContent = arr.name;
+    const createdCard = cardElement.querySelector('.photo-grid__image')
+    createdCard.alt = arr.name;
+    createdCard.src = arr.link;
+    createdCard.textContent = arr.name;
 
     const likeButton = cardElement.querySelector('.photo-grid__like');
     likeButton.addEventListener('click', function (evt) {
@@ -102,7 +100,7 @@ function createCard(arr) {
     imageOpener.addEventListener('click', function (evt) {
         bigImage.src = arr.link;
         bigImageCaption.textContent = arr.name;
-        openPopup(bigImageWrapper)  
+        openPopup(bigImageWrapper)
     })
     return cardElement;
 };
@@ -125,5 +123,5 @@ formEditUserInfoButton.addEventListener('click', () => fillNameJob(formEditUserI
 formAddCardButton.addEventListener('click', () => openPopup(formAddCardWrapper));
 
 closeButtons.forEach(element => {
-    element.addEventListener('click', () => closePopup(element));
+    element.addEventListener('click', () => closePopup(element.closest('.form-popup')));
 })
