@@ -83,10 +83,12 @@ function addCardFormSubmitHandler(evt) {
 
 function createCard(arr) {
     const cardElement = cardTemplate.cloneNode(true);
-    const createdCard = cardElement.querySelector('.photo-grid__image')
-    createdCard.alt = arr.name;
-    createdCard.src = arr.link;
-    createdCard.textContent = arr.name;
+    const createdCardImage = cardElement.querySelector('.photo-grid__image');
+    const createdCardName = cardElement.querySelector('.photo-grid__name')
+    
+    createdCardImage.alt = arr.name;
+    createdCardImage.src = arr.link;
+    createdCardName.textContent = arr.name;
 
     const likeButton = cardElement.querySelector('.photo-grid__like');
     likeButton.addEventListener('click', function (evt) {
@@ -96,8 +98,7 @@ function createCard(arr) {
     const cardDeleteBtn = cardElement.querySelector('.photo-grid__delete-btn');
     cardDeleteBtn.addEventListener('click', () => deleteCard(cardDeleteBtn))
 
-    const imageOpener = cardElement.querySelector('.photo-grid__image');
-    imageOpener.addEventListener('click', function (evt) {
+    createdCardImage.addEventListener('click', function (evt) {
         bigImage.src = arr.link;
         bigImageCaption.textContent = arr.name;
         openPopup(bigImageWrapper)
