@@ -12,11 +12,11 @@ const cardSection = document.querySelector('.photo-grid');
 
 const formElementCardWrapper = document.querySelector('.form-popup_type_add-card');
 const cardFormAddButton = document.querySelector('.avatar__add-button');
-const cardName = document.querySelector('.form-popup__card_name');
+const cardName = document.querySelector('.form-popup__contact-info_card-name');
 const cardImgLink = document.querySelector('.form-popup__img-link');
 const formElementCard = document.querySelector('.form-popup__form-add-card');
 
-const imageOpenerSection = document.querySelector('.form-popup__image_opener');
+const imageOpenerSection = document.querySelector('.form-popup_image-opener');
 const imageBig = document.querySelector('.form-popup__image-big');
 const imageCaption = document.querySelector('.form-popup__image-caption');
 
