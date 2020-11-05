@@ -1,24 +1,24 @@
-const editButton = document.querySelector('.avatar__edit-icon');
+const formEditUserInfoButton = document.querySelector('.avatar__edit-icon');
 const closeButtons = document.querySelectorAll('.form-popup__close-btn');
-const popUpForm = document.querySelector('.form-popup_type_edit');
+const formEditUserInfoWrapper = document.querySelector('.form-popup_type_edit');
 const formNameInput = document.querySelector('.form-popup__contact-info_name');
 const formJobInput = document.querySelector('.form-popup__contact-info_job');
 const pageName = document.querySelector('.avatar__head');
 const pageJob = document.querySelector('.avatar__subtitle');
-const formElement = document.querySelector('.form-popup__form-edit');
+const formEditUserInfo = document.querySelector('.form-popup__form-edit');
 
 const cardTemplate = document.querySelector('#card__create').content;
 const cardSection = document.querySelector('.photo-grid');
 
-const formElementCardWrapper = document.querySelector('.form-popup_type_add-card');
-const cardFormAddButton = document.querySelector('.avatar__add-button');
+const formAddCardWrapper = document.querySelector('.form-popup_type_add-card');
+const formAddCardButton = document.querySelector('.avatar__add-button');
 const cardName = document.querySelector('.form-popup__contact-info_card-name');
 const cardImgLink = document.querySelector('.form-popup__img-link');
-const formElementCard = document.querySelector('.form-popup__form-add-card');
+const formAddCard = document.querySelector('.form-popup__form-add-card');
 
-const imageOpenerSection = document.querySelector('.form-popup_image-opener');
-const imageBig = document.querySelector('.form-popup__image-big');
-const imageCaption = document.querySelector('.form-popup__image-caption');
+const bigImageWrapper = document.querySelector('.form-popup_image-opener');
+const bigImage = document.querySelector('.form-popup__image-big');
+const bigImageCaption = document.querySelector('.form-popup__image-caption');
 
 
 const initialCards = [
@@ -51,12 +51,11 @@ const initialCards = [
 
 function closePopup(popup) {
     const closestElement = popup.closest('.form-popup');
-    closestElement.classList.remove("popup_opened");
-    // console.log(popup)
+    closestElement.classList.remove("form-popup_opened");
 }
 
 function openPopup(popup) {
-    popup.classList.add('popup_opened')
+    popup.classList.add('form-popup_opened')
 }
 
 function fillNameJob(popup) {
@@ -65,11 +64,10 @@ function fillNameJob(popup) {
     openPopup(popup)
 }
 
-function formSubmitHandler(evt) {
+function editFormSubmitHandler(evt) {
     evt.preventDefault();
     pageName.textContent = formNameInput.value;
     pageJob.textContent = formJobInput.value;
-    // console.log(evt)
     closePopup(evt.target);
 }
 
@@ -79,7 +77,6 @@ function addCardFormSubmitHandler(evt) {
         name: cardName.value,
         link: cardImgLink.value
     }
-    // console.log(newCardArray, formElementCard)
     cardSection.prepend(createCard(newCardArray))
     closePopup(evt.target);
     evt.target.reset()
@@ -96,7 +93,6 @@ function createCard(arr) {
     const likeButton = cardElement.querySelector('.photo-grid__like');
     likeButton.addEventListener('click', function (evt) {
         evt.target.classList.toggle('photo-grid__like_active');
-        // console.log(evt)
     })
 
     const cardDeleteBtn = cardElement.querySelector('.photo-grid__delete-btn');
@@ -104,23 +100,16 @@ function createCard(arr) {
 
     const imageOpener = cardElement.querySelector('.photo-grid__image');
     imageOpener.addEventListener('click', function (evt) {
-        // console.log(evt)
-        imageBig.src = arr.link;
-        imageCaption.textContent = arr.name;
-        openPopup(imageOpenerSection)  
+        bigImage.src = arr.link;
+        bigImageCaption.textContent = arr.name;
+        openPopup(bigImageWrapper)  
     })
-
     return cardElement;
-
 };
 
 function deleteCard(item) {
-    // console.log(item)
     const listItem = item.closest('.photo-grid__item');
-    // console.log(listItem)
     listItem.remove();
-    // const cardDeleteBtn = document.querySelectorAll('.photo-grid__delete-btn');
-
 };
 
 // Создание изначального массива
@@ -129,12 +118,11 @@ initialCards.forEach(element => {
 });
 
 // Обработчики событий
+formEditUserInfo.addEventListener('submit', editFormSubmitHandler);
+formAddCard.addEventListener('submit', addCardFormSubmitHandler);
 
-formElement.addEventListener('submit', formSubmitHandler);
-formElementCard.addEventListener('submit', addCardFormSubmitHandler);
-
-editButton.addEventListener('click', () => fillNameJob(popUpForm));
-cardFormAddButton.addEventListener('click', () => openPopup(formElementCardWrapper));
+formEditUserInfoButton.addEventListener('click', () => fillNameJob(formEditUserInfoWrapper));
+formAddCardButton.addEventListener('click', () => openPopup(formAddCardWrapper));
 
 closeButtons.forEach(element => {
     element.addEventListener('click', () => closePopup(element));
