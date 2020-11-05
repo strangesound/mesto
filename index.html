@@ -34,7 +34,25 @@
         <button type="button" class="avatar__add-button"></button>
       </section>
       <!-- Карточки -->
-      <section class="photo-grid"></section>
+      <section class="photo-grid">
+        <!-- Шаблон карточки -->
+        <template id="card__create">
+          <div class="photo-grid__item">
+            <button class="photo-grid__delete-btn">
+              <img src="./images/trash.svg" alt="Удалить" />
+            </button>
+            <img
+              src="./images/image1.jpg"
+              alt="Временное"
+              class="photo-grid__image"
+            />
+            <div class="photo-grid__title">
+              <h2 class="photo-grid__name"></h2>
+              <button type="button" class="photo-grid__like"></button>
+            </div>
+          </div>
+        </template>
+      </section>
     </main>
 
     <!-- Форма редактирования имени -->
@@ -93,7 +111,7 @@
     </section>
 
     <!-- Попап картинки -->
-    <section class="form-popup form-popup__image-opener">
+    <section class="form-popup form-popup__image_opener">
       <figure class="form-popup__image-opener-wrapper">
         <button class="form-popup__close-btn" type="button"></button>
         <img
@@ -111,24 +129,6 @@
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-
-    <!-- Шаблон карточки -->
-    <template id="card__create">
-      <div class="photo-grid__item">
-        <button class="photo-grid__delete-btn">
-          <img src="./images/trash.svg" alt="Удалить" />
-        </button>
-        <img
-          src="./images/image1.jpg"
-          alt="Временное"
-          class="photo-grid__image"
-        />
-        <div class="photo-grid__title">
-          <h2 class="photo-grid__name"></h2>
-          <button type="button" class="photo-grid__like"></button>
-        </div>
-      </div>
-    </template>
 
     <script src="./scripts/script.js"></script>
   </body>
