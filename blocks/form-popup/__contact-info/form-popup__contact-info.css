@@ -9,6 +9,19 @@
   outline: none;
 }
 
+.form-popup__contact-info:invalid:not(:placeholder-shown) {
+  border-bottom: 1px solid red;
+}
+
+.form-popup__contact-info:valid {
+  border-bottom: 1px solid rgba(93, 252, 14, 1);
+
+}
+
+.form-popup__contact-info:required {
+  background-color: rgb(187, 233, 134);
+}
+
 @media screen and (max-width: 768px) {
   .form-popup__contact-info {
     margin-left: auto;

@@ -73,6 +73,9 @@
             placeholder="Имя"
             type="text"
             name="first-name"
+            required
+            minlength="3"
+            autocomplete="off"
           />
 
           <input
@@ -80,6 +83,9 @@
             placeholder="Должность"
             type="text"
             name="job-name"
+            required
+            minlength="3"
+            autocomplete="off"
           />
         </fieldset>
         <button class="form-popup__btn" type="submit" value="Сохранить">
@@ -102,13 +108,20 @@
             placeholder="Название"
             type="text"
             name="first-name"
+            required
+            minlength="3"
+            maxlength="50"
+            required
+            autocomplete="off"
           />
 
           <input
             class="form-popup__contact-info form-popup__img-link"
             placeholder="Ссылка на картинку"
-            type="text"
+            type="url"
             name="job-name"
+            required
+            autocomplete="off"
           />
         </fieldset>
         <button class="form-popup__btn" type="submit" value="Сохранить">

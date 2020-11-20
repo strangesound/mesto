@@ -57,7 +57,7 @@ function openPopup(popup) {
     popup.classList.add('form-popup_opened')
 }
 
-function fillNameJob(popup) {
+function fillNameJob() {
     formNameInput.value = pageName.textContent;
     formJobInput.value = pageJob.textContent;
     openPopup(formEditUserInfoWrapper)
@@ -98,18 +98,20 @@ function createCard(arr) {
     const cardDeleteBtn = cardElement.querySelector('.photo-grid__delete-btn');
     cardDeleteBtn.addEventListener('click', () => deleteCard(cardDeleteBtn))
 
-    createdCardImage.addEventListener('click', function (evt) {
+    createdCardImage.addEventListener('click', function () {
         bigImage.src = arr.link;
         bigImageCaption.textContent = arr.name;
         openPopup(bigImageWrapper)
     })
     return cardElement;
-};
+}
 
 function deleteCard(item) {
     const listItem = item.closest('.photo-grid__item');
     listItem.remove();
-};
+}
+
+
 
 // Создание изначального массива
 initialCards.forEach(element => {
@@ -126,3 +128,9 @@ formAddCardButton.addEventListener('click', () => openPopup(formAddCardWrapper))
 closeButtons.forEach(element => {
     element.addEventListener('click', () => closePopup(element.closest('.form-popup')));
 })
+
+
+// const validationConfig = {
+//     formSelector: '.form-popup__form-edit',
+//     inputSelector: '.form-popup__contact-info_name',
+// }
