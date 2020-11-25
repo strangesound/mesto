@@ -10,10 +10,6 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
 
-  <!-- Иван, привет! Спасибо за ревью. 
-  Я бы перенес шаблон в конец, но 
-  тогда работу нельзя сдать — ругается на БЭМ -->
-
   <body class="body">
     <header class="header">
       <img
@@ -64,31 +60,45 @@
 
     <!-- Форма редактирования имени -->
     <section class="form-popup form-popup_type_edit">
-      <form class="form-popup__form form-popup__form-edit" name="form-name-job">
+      <form
+        class="form-popup__form form-popup__form-edit"
+        name="form-name-job"
+        novalidate
+      >
         <button class="form-popup__close-btn" type="button"></button>
         <h2 class="form-popup__head">Редактировать профиль</h2>
         <fieldset class="form-popup__contact-wrapper">
           <input
+            id="first-name"
             class="form-popup__contact-info form-popup__contact-info_name"
             placeholder="Имя"
             type="text"
             name="first-name"
             required
-            minlength="3"
+            minlength="2"
+            maxlength="200"
             autocomplete="off"
           />
+          <span id="first-name-error" class="error"></span>
 
           <input
+            id="job-name"
             class="form-popup__contact-info form-popup__contact-info_job"
             placeholder="Должность"
             type="text"
             name="job-name"
             required
-            minlength="3"
+            minlength="2"
+            maxlength="200"
             autocomplete="off"
           />
+          <span id="job-name-error" class="error"></span>
         </fieldset>
-        <button class="form-popup__btn" type="submit" value="Сохранить">
+        <button
+          class="form-popup__btn form-popup__btn-active"
+          type="submit"
+          value="Сохранить"
+        >
           Сохранить
         </button>
       </form>
@@ -99,6 +109,7 @@
       <form
         class="form-popup__form form-popup__form-add-card"
         name="card-add-name"
+        novalidate
       >
         <button class="form-popup__close-btn" type="button"></button>
         <h2 class="form-popup__head">Новое место</h2>
@@ -107,22 +118,28 @@
             class="form-popup__contact-info form-popup__contact-info_card-name"
             placeholder="Название"
             type="text"
-            name="first-name"
+            name="card-name"
+            id="card-name"
             required
-            minlength="3"
-            maxlength="50"
+            minlength="2"
+            maxlength="30"
             required
             autocomplete="off"
           />
+          <span id="card-name-error" class="error"></span>
+
 
           <input
             class="form-popup__contact-info form-popup__img-link"
             placeholder="Ссылка на картинку"
             type="url"
-            name="job-name"
+            name="link-url"
+            id="link-url"
             required
             autocomplete="off"
           />
+          <span id="link-url-error" class="error"></span>
+
         </fieldset>
         <button class="form-popup__btn" type="submit" value="Сохранить">
           Создать
@@ -150,6 +167,7 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
 
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/script.js"></script>
   </body>
 </html>

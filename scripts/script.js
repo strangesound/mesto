@@ -6,6 +6,8 @@ const formJobInput = document.querySelector('.form-popup__contact-info_job');
 const pageName = document.querySelector('.avatar__head');
 const pageJob = document.querySelector('.avatar__subtitle');
 const formEditUserInfo = document.querySelector('.form-popup__form-edit');
+const formEditUserInfoSubmitButton = formEditUserInfo.querySelector('.form-popup__btn')
+
 
 const cardTemplate = document.querySelector('#card__create').content;
 const cardSection = document.querySelector('.photo-grid');
@@ -85,7 +87,7 @@ function createCard(arr) {
     const cardElement = cardTemplate.cloneNode(true);
     const createdCardImage = cardElement.querySelector('.photo-grid__image');
     const createdCardName = cardElement.querySelector('.photo-grid__name')
-    
+
     createdCardImage.alt = arr.name;
     createdCardImage.src = arr.link;
     createdCardName.textContent = arr.name;
@@ -130,7 +132,18 @@ closeButtons.forEach(element => {
 })
 
 
-// const validationConfig = {
-//     formSelector: '.form-popup__form-edit',
-//     inputSelector: '.form-popup__contact-info_name',
-// }
+//Закрыть форму при клике по бэкграунду
+document.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('form-popup_opened')) {
+        closePopup(evt.target);
+    }
+});
+
+//Закрыть форму по Escape
+document.addEventListener('keydown', function (evt) {
+    if (evt.key === "Escape") {
+        const currentPopup = document.querySelector('.form-popup_opened')
+        closePopup(currentPopup);
+    };
+});
+

@@ -18,8 +18,15 @@
 
 }
 
-.form-popup__contact-info:required {
-  background-color: rgb(187, 233, 134);
+/* .form-popup__contact-info:required {
+  background-color: rgb(225, 225, 225);
+} */
+
+.error{
+  font-size: 12px;
+  color: red;
+  max-width: 300px;
+  margin-top: 5px;
 }
 
 @media screen and (max-width: 768px) {
