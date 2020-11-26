@@ -53,22 +53,36 @@ const initialCards = [
 
 function closePopup(popup) {
     popup.classList.remove("form-popup_opened");
+    document.removeEventListener('keydown', closeByEscape);
+
 }
 
 function openPopup(popup) {
-    popup.classList.add('form-popup_opened')
+    popup.classList.add('form-popup_opened');
+     //Закрыть форму по Escape
+     document.addEventListener('keydown', closeByEscape);
+
+}
+
+function closeByEscape(evt) {
+    if (evt.key === "Escape") {
+        const currentPopup = document.querySelector('.form-popup_opened')
+        closePopup(currentPopup);
+    };
 }
 
 function fillNameJob() {
     formNameInput.value = pageName.textContent;
     formJobInput.value = pageJob.textContent;
     openPopup(formEditUserInfoWrapper)
+
 }
 
 function editFormSubmitHandler(evt) {
     evt.preventDefault();
     pageName.textContent = formNameInput.value;
     pageJob.textContent = formJobInput.value;
+
     closePopup(formEditUserInfoWrapper);
 }
 
@@ -127,10 +141,12 @@ formAddCard.addEventListener('submit', addCardFormSubmitHandler);
 formEditUserInfoButton.addEventListener('click', () => fillNameJob(formEditUserInfoWrapper));
 formAddCardButton.addEventListener('click', () => openPopup(formAddCardWrapper));
 
+//ocument.addEventListener('click', (evt) => closePopup(evt.target.closest('.form-popup')));
+
+
 closeButtons.forEach(element => {
     element.addEventListener('click', () => closePopup(element.closest('.form-popup')));
 })
-
 
 //Закрыть форму при клике по бэкграунду
 document.addEventListener('click', function (evt) {
@@ -139,11 +155,4 @@ document.addEventListener('click', function (evt) {
     }
 });
 
-//Закрыть форму по Escape
-document.addEventListener('keydown', function (evt) {
-    if (evt.key === "Escape") {
-        const currentPopup = document.querySelector('.form-popup_opened')
-        closePopup(currentPopup);
-    };
-});
 

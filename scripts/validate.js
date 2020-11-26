@@ -13,6 +13,7 @@ const hideInputError = (formElement, inputElement, config) => {
 };
 
 const checkInputValidity = (formElement, inputElement, config) => {
+    console.log(inputElement)
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage, config);
     } else {
@@ -59,7 +60,6 @@ const enableValidation = (config) => {
         evt.preventDefault();
     });
     setEventListeners(formElement, config)
-
 };
 
 
