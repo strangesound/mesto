@@ -13,7 +13,6 @@ const hideInputError = (formElement, inputElement, config) => {
 };
 
 const checkInputValidity = (formElement, inputElement, config) => {
-    console.log(inputElement)
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage, config);
     } else {
@@ -54,8 +53,8 @@ const toggleButtonState = (inputList, buttonElement, config) => {
     }
 };
 
-const enableValidation = (config) => {
-    const formElement = document.querySelector(config.formSelector)
+const enableValidation = (config, form) => {
+    const formElement = document.querySelector(form)
     formElement.addEventListener('submit', function (evt) {
         evt.preventDefault();
     });
@@ -63,8 +62,11 @@ const enableValidation = (config) => {
 };
 
 
-const configNameEdit = {
-    formSelector: '.form-popup__form-edit',
+
+const config = {
+    formSelector: {
+        formNameEditSelector: '.form-popup__form-edit',
+        formCardAddSelector: '.form-popup__form-add-card'},
     inputSelector: '.form-popup__contact-info',
     submitButtonSelector: '.form-popup__btn',
     activeButtonClass: 'form-popup__btn-active',
@@ -72,16 +74,16 @@ const configNameEdit = {
     errorElementActive: 'error-class'
 };
 
-const configCardAdd = {
-    formSelector: '.form-popup__form-add-card',
-    inputSelector: '.form-popup__contact-info',
-    submitButtonSelector: '.form-popup__btn',
-    activeButtonClass: 'form-popup__btn-active',
-    inputErrorClass: 'error',
-    errorElementActive: 'error-class'
-};
+// const configCardAdd = {
+//     formSelector: '.form-popup__form-add-card',
+//     inputSelector: '.form-popup__contact-info',
+//     submitButtonSelector: '.form-popup__btn',
+//     activeButtonClass: 'form-popup__btn-active',
+//     inputErrorClass: 'error',
+//     errorElementActive: 'error-class'
+// };
 
 
-enableValidation(configNameEdit);
-enableValidation(configCardAdd);
+enableValidation(config, config.formSelector.formNameEditSelector);
+enableValidation(config, config.formSelector.formCardAddSelector);
 

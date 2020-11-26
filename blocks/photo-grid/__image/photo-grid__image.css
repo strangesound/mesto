@@ -1,6 +1,15 @@
 .photo-grid__image {
   width: 100%;
   height: 282px;
+  min-height: 282px;
   object-fit: cover;
   overflow: hidden;
+  transition: 0.3s;
+
+}
+
+.photo-grid__image:hover {
+  /* filter: drop-shadow(2,3) */
+  opacity: 0.8;
+  cursor: pointer;
 }

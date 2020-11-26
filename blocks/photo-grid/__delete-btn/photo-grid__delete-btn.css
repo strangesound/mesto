@@ -8,6 +8,7 @@
   padding: 0;
   background-color:transparent;
   transition: 0.3s;
+  z-index: 50;
 }
 
 .photo-grid__delete-btn:hover {

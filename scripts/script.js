@@ -1,3 +1,8 @@
+//Антон, привет! Спасибо за ревью! Надеюсь, я правильно понял про "один универсальный конфигурационный объект". 
+//Если я выношу темплэйты в конец html, то при отправке кода ругается на БЭМ-классы"
+
+
+
 const formEditUserInfoButton = document.querySelector('.avatar__edit-icon');
 const closeButtons = document.querySelectorAll('.form-popup__close-btn');
 const formEditUserInfoWrapper = document.querySelector('.form-popup_type_edit');
@@ -17,64 +22,48 @@ const formAddCardButton = document.querySelector('.avatar__add-button');
 const cardName = document.querySelector('.form-popup__contact-info_card-name');
 const cardImgLink = document.querySelector('.form-popup__img-link');
 const formAddCard = document.querySelector('.form-popup__form-add-card');
+const formAddCardSubmitButton = formAddCard.querySelector('.form-popup__btn')
+
 
 const bigImageWrapper = document.querySelector('.form-popup_image-opener');
 const bigImage = document.querySelector('.form-popup__image-big');
 const bigImageCaption = document.querySelector('.form-popup__image-caption');
 
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    },
 
-];
 
 function closePopup(popup) {
     popup.classList.remove("form-popup_opened");
     document.removeEventListener('keydown', closeByEscape);
+    document.removeEventListener('click', closeByOverlayClick);
 
 }
 
 function openPopup(popup) {
     popup.classList.add('form-popup_opened');
-     //Закрыть форму по Escape
-     document.addEventListener('keydown', closeByEscape);
-
+    document.addEventListener('keydown', closeByEscape);
+    document.addEventListener('click', closeByOverlayClick);
 }
 
 function closeByEscape(evt) {
-    if (evt.key === "Escape") {
+    const escButton = "Escape"
+    if (evt.key === escButton) {
         const currentPopup = document.querySelector('.form-popup_opened')
         closePopup(currentPopup);
     };
 }
 
+function closeByOverlayClick(evt) {
+    if (evt.target.classList.contains('form-popup_opened')) {
+        closePopup(evt.target);
+
+    }
+}
+
 function fillNameJob() {
     formNameInput.value = pageName.textContent;
     formJobInput.value = pageJob.textContent;
-    openPopup(formEditUserInfoWrapper)
+    
 
 }
 
@@ -94,7 +83,7 @@ function addCardFormSubmitHandler(evt) {
     }
     cardSection.prepend(createCard(newCardArray))
     closePopup(formAddCardWrapper);
-    evt.target.reset()
+    // evt.target.reset()
 }
 
 function createCard(arr) {
@@ -116,6 +105,7 @@ function createCard(arr) {
 
     createdCardImage.addEventListener('click', function () {
         bigImage.src = arr.link;
+        bigImage.alt = arr.name;
         bigImageCaption.textContent = arr.name;
         openPopup(bigImageWrapper)
     })
@@ -138,21 +128,28 @@ initialCards.forEach(element => {
 formEditUserInfo.addEventListener('submit', editFormSubmitHandler);
 formAddCard.addEventListener('submit', addCardFormSubmitHandler);
 
-formEditUserInfoButton.addEventListener('click', () => fillNameJob(formEditUserInfoWrapper));
-formAddCardButton.addEventListener('click', () => openPopup(formAddCardWrapper));
 
-//ocument.addEventListener('click', (evt) => closePopup(evt.target.closest('.form-popup')));
+
+//formEditUserInfoButton.addEventListener('click', () => fillNameJob(formEditUserInfoWrapper));
+
+formEditUserInfoButton.addEventListener('click', function () {
+    fillNameJob(formEditUserInfoWrapper);
+    openPopup(formEditUserInfoWrapper);
+    formEditUserInfo.querySelector("#first-name-error").textContent = '';
+    
+    });
+    
+
+formAddCardButton.addEventListener('click', function () {
+    formAddCard.reset()
+    openPopup(formAddCardWrapper);
+    enableValidation(config, config.formSelector.formCardAddSelector);
+});
 
 
 closeButtons.forEach(element => {
     element.addEventListener('click', () => closePopup(element.closest('.form-popup')));
 })
 
-//Закрыть форму при клике по бэкграунду
-document.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('form-popup_opened')) {
-        closePopup(evt.target);
-    }
-});
 
 
