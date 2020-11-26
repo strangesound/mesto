@@ -6,6 +6,8 @@ const formJobInput = document.querySelector('.form-popup__contact-info_job');
 const pageName = document.querySelector('.avatar__head');
 const pageJob = document.querySelector('.avatar__subtitle');
 const formEditUserInfo = document.querySelector('.form-popup__form-edit');
+const formEditUserInfoSubmitButton = formEditUserInfo.querySelector('.form-popup__btn')
+
 
 const cardTemplate = document.querySelector('#card__create').content;
 const cardSection = document.querySelector('.photo-grid');
@@ -51,22 +53,36 @@ const initialCards = [
 
 function closePopup(popup) {
     popup.classList.remove("form-popup_opened");
+    document.removeEventListener('keydown', closeByEscape);
+
 }
 
 function openPopup(popup) {
-    popup.classList.add('form-popup_opened')
+    popup.classList.add('form-popup_opened');
+     //Закрыть форму по Escape
+     document.addEventListener('keydown', closeByEscape);
+
 }
 
-function fillNameJob(popup) {
+function closeByEscape(evt) {
+    if (evt.key === "Escape") {
+        const currentPopup = document.querySelector('.form-popup_opened')
+        closePopup(currentPopup);
+    };
+}
+
+function fillNameJob() {
     formNameInput.value = pageName.textContent;
     formJobInput.value = pageJob.textContent;
     openPopup(formEditUserInfoWrapper)
+
 }
 
 function editFormSubmitHandler(evt) {
     evt.preventDefault();
     pageName.textContent = formNameInput.value;
     pageJob.textContent = formJobInput.value;
+
     closePopup(formEditUserInfoWrapper);
 }
 
@@ -85,7 +101,7 @@ function createCard(arr) {
     const cardElement = cardTemplate.cloneNode(true);
     const createdCardImage = cardElement.querySelector('.photo-grid__image');
     const createdCardName = cardElement.querySelector('.photo-grid__name')
-    
+
     createdCardImage.alt = arr.name;
     createdCardImage.src = arr.link;
     createdCardName.textContent = arr.name;
@@ -98,18 +114,20 @@ function createCard(arr) {
     const cardDeleteBtn = cardElement.querySelector('.photo-grid__delete-btn');
     cardDeleteBtn.addEventListener('click', () => deleteCard(cardDeleteBtn))
 
-    createdCardImage.addEventListener('click', function (evt) {
+    createdCardImage.addEventListener('click', function () {
         bigImage.src = arr.link;
         bigImageCaption.textContent = arr.name;
         openPopup(bigImageWrapper)
     })
     return cardElement;
-};
+}
 
 function deleteCard(item) {
     const listItem = item.closest('.photo-grid__item');
     listItem.remove();
-};
+}
+
+
 
 // Создание изначального массива
 initialCards.forEach(element => {
@@ -123,6 +141,18 @@ formAddCard.addEventListener('submit', addCardFormSubmitHandler);
 formEditUserInfoButton.addEventListener('click', () => fillNameJob(formEditUserInfoWrapper));
 formAddCardButton.addEventListener('click', () => openPopup(formAddCardWrapper));
 
+//ocument.addEventListener('click', (evt) => closePopup(evt.target.closest('.form-popup')));
+
+
 closeButtons.forEach(element => {
     element.addEventListener('click', () => closePopup(element.closest('.form-popup')));
 })
+
+//Закрыть форму при клике по бэкграунду
+document.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('form-popup_opened')) {
+        closePopup(evt.target);
+    }
+});
+
+
