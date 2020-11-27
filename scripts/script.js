@@ -29,7 +29,7 @@ const bigImageWrapper = document.querySelector('.form-popup_image-opener');
 const bigImage = document.querySelector('.form-popup__image-big');
 const bigImageCaption = document.querySelector('.form-popup__image-caption');
 
-
+const escButton = "Escape"
 
 
 function closePopup(popup) {
@@ -46,7 +46,6 @@ function openPopup(popup) {
 }
 
 function closeByEscape(evt) {
-    const escButton = "Escape"
     if (evt.key === escButton) {
         const currentPopup = document.querySelector('.form-popup_opened')
         closePopup(currentPopup);
@@ -64,7 +63,6 @@ function fillNameJob() {
     formNameInput.value = pageName.textContent;
     formJobInput.value = pageJob.textContent;
     
-
 }
 
 function editFormSubmitHandler(evt) {
@@ -118,7 +116,6 @@ function deleteCard(item) {
 }
 
 
-
 // Создание изначального массива
 initialCards.forEach(element => {
     cardSection.append(createCard(element))
@@ -143,7 +140,8 @@ formEditUserInfoButton.addEventListener('click', function () {
 formAddCardButton.addEventListener('click', function () {
     formAddCard.reset()
     openPopup(formAddCardWrapper);
-    enableValidation(config, config.formSelector.formCardAddSelector);
+    deactivateSubmitButton(formAddCardSubmitButton);
+    //enableValidation(config, config.formSelector.formCardAddSelector);
 });
 
 

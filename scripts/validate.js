@@ -61,6 +61,10 @@ const enableValidation = (config, form) => {
     setEventListeners(formElement, config)
 };
 
+const deactivateSubmitButton = (button) => {
+    button.classList.remove('form-popup__btn-active')
+    button.disabled = true;
+}
 
 
 const config = {
@@ -73,15 +77,6 @@ const config = {
     inputErrorClass: 'error',
     errorElementActive: 'error-class'
 };
-
-// const configCardAdd = {
-//     formSelector: '.form-popup__form-add-card',
-//     inputSelector: '.form-popup__contact-info',
-//     submitButtonSelector: '.form-popup__btn',
-//     activeButtonClass: 'form-popup__btn-active',
-//     inputErrorClass: 'error',
-//     errorElementActive: 'error-class'
-// };
 
 
 enableValidation(config, config.formSelector.formNameEditSelector);

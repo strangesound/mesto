@@ -4,6 +4,7 @@
     margin: auto;
     display: block;
     border-bottom: 2px solid rgba(84, 84, 84, .7);
+    
   }
   @media screen and (max-width: 768px) {
     .header {
