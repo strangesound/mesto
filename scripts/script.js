@@ -1,6 +1,6 @@
-//Антон, привет! Спасибо за ревью! Надеюсь, я правильно понял про "один универсальный конфигурационный объект". 
-//Если я выношу темплэйты в конец html, то при отправке кода ругается на БЭМ-классы"
-
+import { Card } from './Card.js'
+import { initialCards } from './initialCards.js'
+import { closePopup, openPopup, closeByEscape, closeByOverlayClick } from './utils.js'
 
 
 const formEditUserInfoButton = document.querySelector('.avatar__edit-icon');
@@ -14,7 +14,7 @@ const formEditUserInfo = document.querySelector('.form-popup__form-edit');
 const formEditUserInfoSubmitButton = formEditUserInfo.querySelector('.form-popup__btn')
 
 
-const cardTemplate = document.querySelector('#card__create').content;
+// const cardTemplate = document.querySelector('#card__create').content;
 const cardSection = document.querySelector('.photo-grid');
 
 const formAddCardWrapper = document.querySelector('.form-popup_type_add-card');
@@ -25,44 +25,13 @@ const formAddCard = document.querySelector('.form-popup__form-add-card');
 const formAddCardSubmitButton = formAddCard.querySelector('.form-popup__btn')
 
 
-const bigImageWrapper = document.querySelector('.form-popup_image-opener');
-const bigImage = document.querySelector('.form-popup__image-big');
-const bigImageCaption = document.querySelector('.form-popup__image-caption');
-
-const escButton = "Escape"
 
 
-function closePopup(popup) {
-    popup.classList.remove("form-popup_opened");
-    document.removeEventListener('keydown', closeByEscape);
-    document.removeEventListener('click', closeByOverlayClick);
-
-}
-
-function openPopup(popup) {
-    popup.classList.add('form-popup_opened');
-    document.addEventListener('keydown', closeByEscape);
-    document.addEventListener('click', closeByOverlayClick);
-}
-
-function closeByEscape(evt) {
-    if (evt.key === escButton) {
-        const currentPopup = document.querySelector('.form-popup_opened')
-        closePopup(currentPopup);
-    };
-}
-
-function closeByOverlayClick(evt) {
-    if (evt.target.classList.contains('form-popup_opened')) {
-        closePopup(evt.target);
-
-    }
-}
 
 function fillNameJob() {
     formNameInput.value = pageName.textContent;
     formJobInput.value = pageJob.textContent;
-    
+
 }
 
 function editFormSubmitHandler(evt) {
@@ -79,47 +48,20 @@ function addCardFormSubmitHandler(evt) {
         name: cardName.value,
         link: cardImgLink.value
     }
-    cardSection.prepend(createCard(newCardArray))
+    const card = new Card(newCardArray, '#card__create');
+    const cardElement = card.generateCard();
+    document.querySelector('.photo-grid').prepend(cardElement);
     closePopup(formAddCardWrapper);
-    // evt.target.reset()
 }
 
-function createCard(arr) {
-    const cardElement = cardTemplate.cloneNode(true);
-    const createdCardImage = cardElement.querySelector('.photo-grid__image');
-    const createdCardName = cardElement.querySelector('.photo-grid__name')
-
-    createdCardImage.alt = arr.name;
-    createdCardImage.src = arr.link;
-    createdCardName.textContent = arr.name;
-
-    const likeButton = cardElement.querySelector('.photo-grid__like');
-    likeButton.addEventListener('click', function (evt) {
-        evt.target.classList.toggle('photo-grid__like_active');
-    })
-
-    const cardDeleteBtn = cardElement.querySelector('.photo-grid__delete-btn');
-    cardDeleteBtn.addEventListener('click', () => deleteCard(cardDeleteBtn))
-
-    createdCardImage.addEventListener('click', function () {
-        bigImage.src = arr.link;
-        bigImage.alt = arr.name;
-        bigImageCaption.textContent = arr.name;
-        openPopup(bigImageWrapper)
-    })
-    return cardElement;
-}
-
-function deleteCard(item) {
-    const listItem = item.closest('.photo-grid__item');
-    listItem.remove();
-}
-
-
-// Создание изначального массива
-initialCards.forEach(element => {
-    cardSection.append(createCard(element))
+// Создание начального массива карточек
+initialCards.forEach((item) => {
+    const card = new Card(item, '#card__create');
+    const cardElement = card.generateCard();
+    document.querySelector('.photo-grid').append(cardElement);
 });
+
+
 
 // Обработчики событий
 formEditUserInfo.addEventListener('submit', editFormSubmitHandler);
@@ -133,9 +75,9 @@ formEditUserInfoButton.addEventListener('click', function () {
     fillNameJob(formEditUserInfoWrapper);
     openPopup(formEditUserInfoWrapper);
     formEditUserInfo.querySelector("#first-name-error").textContent = '';
-    
-    });
-    
+
+});
+
 
 formAddCardButton.addEventListener('click', function () {
     formAddCard.reset()
