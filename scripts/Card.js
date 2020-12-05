@@ -6,7 +6,6 @@ export class Card {
         this._createdCardImageSrc = arr.link;
         this._createdCardName = arr.name;
         this._cardSelector = cardSelector;
-
     }
 
     _getTemplate() {
@@ -21,8 +20,9 @@ export class Card {
 
     generateCard() {
         this._element = this._getTemplate();
-        this._element.querySelector('.photo-grid__image').src = this._createdCardImageSrc;
-        this._element.querySelector('.photo-grid__image').alt = this._createdCardImageAlt;
+        this.cardImage = this._element.querySelector('.photo-grid__image')
+        this.cardImage.src = this._createdCardImageSrc;
+        this.cardImage.alt = this._createdCardImageAlt;
         this._element.querySelector('.photo-grid__name').textContent = this._createdCardName;
 
         this._setEventListeners();
@@ -39,7 +39,7 @@ export class Card {
             this._cardDeleteBtn();
         });
 
-        this._element.querySelector('.photo-grid__image').addEventListener('click', () => {
+        this.cardImage.addEventListener('click', () => {
             this._createdCardBigImage();
         });
     }

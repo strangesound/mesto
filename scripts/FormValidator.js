@@ -1,3 +1,6 @@
+//  Максим, привет! Спасибо за ревью!
+// Звание самого вежливого ревьювера ЯП переходит к вам))
+
 export class FormValidator {
 
     constructor(config, selector) {
@@ -50,8 +53,7 @@ export class FormValidator {
 
     _toggleButtonState = () => {
         if (this._hasInvalidInput()) {
-            this._buttonElement.classList.remove(this._activeButtonClass);
-            this._buttonElement.disabled = true;
+            this.deactivateSubmitButton();
         } else {
             this._buttonElement.classList.add(this._activeButtonClass);
             this._buttonElement.disabled = false;
