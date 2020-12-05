@@ -1,6 +1,7 @@
 import { Card } from './Card.js'
 import { initialCards } from './initialCards.js'
 import { closePopup, openPopup, closeByEscape, closeByOverlayClick } from './utils.js'
+import { FormValidator } from './FormValidator.js'
 
 
 const formEditUserInfoButton = document.querySelector('.avatar__edit-icon');
@@ -13,8 +14,6 @@ const pageJob = document.querySelector('.avatar__subtitle');
 const formEditUserInfo = document.querySelector('.form-popup__form-edit');
 const formEditUserInfoSubmitButton = formEditUserInfo.querySelector('.form-popup__btn')
 
-
-// const cardTemplate = document.querySelector('#card__create').content;
 const cardSection = document.querySelector('.photo-grid');
 
 const formAddCardWrapper = document.querySelector('.form-popup_type_add-card');
@@ -23,10 +22,6 @@ const cardName = document.querySelector('.form-popup__contact-info_card-name');
 const cardImgLink = document.querySelector('.form-popup__img-link');
 const formAddCard = document.querySelector('.form-popup__form-add-card');
 const formAddCardSubmitButton = formAddCard.querySelector('.form-popup__btn')
-
-
-
-
 
 function fillNameJob() {
     formNameInput.value = pageName.textContent;
@@ -62,14 +57,9 @@ initialCards.forEach((item) => {
 });
 
 
-
 // Обработчики событий
 formEditUserInfo.addEventListener('submit', editFormSubmitHandler);
 formAddCard.addEventListener('submit', addCardFormSubmitHandler);
-
-
-
-//formEditUserInfoButton.addEventListener('click', () => fillNameJob(formEditUserInfoWrapper));
 
 formEditUserInfoButton.addEventListener('click', function () {
     fillNameJob(formEditUserInfoWrapper);
@@ -82,8 +72,7 @@ formEditUserInfoButton.addEventListener('click', function () {
 formAddCardButton.addEventListener('click', function () {
     formAddCard.reset()
     openPopup(formAddCardWrapper);
-    deactivateSubmitButton(formAddCardSubmitButton);
-    //enableValidation(config, config.formSelector.formCardAddSelector);
+    addFormValidator.deactivateSubmitButton()
 });
 
 
@@ -92,4 +81,21 @@ closeButtons.forEach(element => {
 })
 
 
+const config = {
+    formSelector: {
+        formNameEditSelector: '.form-popup__form-edit',
+        formCardAddSelector: '.form-popup__form-add-card'
+    },
+    inputSelector: '.form-popup__contact-info',
+    submitButtonSelector: '.form-popup__btn',
+    activeButtonClass: 'form-popup__btn-active',
+    inputErrorClass: 'error',
+    errorElementActive: 'error-class'
+};
 
+
+const editFormValidator = new FormValidator(config, config.formSelector.formNameEditSelector);
+editFormValidator.enableValidation();
+
+const addFormValidator = new FormValidator(config, config.formSelector.formCardAddSelector);
+addFormValidator.enableValidation();
