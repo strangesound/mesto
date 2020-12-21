@@ -1,6 +1,7 @@
 import { Card } from './Card.js'
 import { initialCards } from './initialCards.js'
-import { closePopup, openPopup, closeByEscape, closeByOverlayClick } from './utils.js'
+// import { closePopup, openPopup, closeByEscape, closeByOverlayClick } from './utils.js'
+import { Popup } from './Popup.js'
 import { FormValidator } from './FormValidator.js'
 
 
@@ -26,15 +27,13 @@ const formAddCardSubmitButton = formAddCard.querySelector('.form-popup__btn')
 function fillNameJob() {
     formNameInput.value = pageName.textContent;
     formJobInput.value = pageJob.textContent;
-
 }
 
 function editFormSubmitHandler(evt) {
     evt.preventDefault();
     pageName.textContent = formNameInput.value;
     pageJob.textContent = formJobInput.value;
-
-    closePopup(formEditUserInfoWrapper);
+    formEditUserInfoClass.closePopup();
 }
 
 function addCardFormSubmitHandler(evt) {
@@ -46,7 +45,7 @@ function addCardFormSubmitHandler(evt) {
     const card = new Card(newCardArray, '#card__create');
     const cardElement = card.generateCard();
     document.querySelector('.photo-grid').prepend(cardElement);
-    closePopup(formAddCardWrapper);
+    formAddCardClass.closePopup();
 }
 
 // Создание начального массива карточек
@@ -58,27 +57,32 @@ initialCards.forEach((item) => {
 
 
 // Обработчики событий
+
+const formAddCardClass = new Popup(formAddCardWrapper);
+formAddCardClass.setEventListeners();
 formEditUserInfo.addEventListener('submit', editFormSubmitHandler);
+
+const formEditUserInfoClass = new Popup(formEditUserInfoWrapper);
+formEditUserInfoClass.setEventListeners();
 formAddCard.addEventListener('submit', addCardFormSubmitHandler);
+
 
 formEditUserInfoButton.addEventListener('click', function () {
     fillNameJob(formEditUserInfoWrapper);
-    openPopup(formEditUserInfoWrapper);
+    formEditUserInfoClass.openPopup(formEditUserInfoWrapper);
     formEditUserInfo.querySelector("#first-name-error").textContent = '';
 
 });
 
 
+
+
 formAddCardButton.addEventListener('click', function () {
     formAddCard.reset()
-    openPopup(formAddCardWrapper);
-    addFormValidator.deactivateSubmitButton()
+    formAddCardClass.openPopup();
+    addFormValidator.deactivateSubmitButton();
 });
 
-
-closeButtons.forEach(element => {
-    element.addEventListener('click', () => closePopup(element.closest('.form-popup')));
-})
 
 
 const config = {

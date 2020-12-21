@@ -1,6 +1,3 @@
-//  Максим, привет! Спасибо за ревью!
-// Звание самого вежливого ревьювера ЯП переходит к вам))
-
 export class FormValidator {
 
     constructor(config, selector) {
