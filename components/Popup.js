@@ -7,6 +7,8 @@
 
 // form-popup__form-add-card
 
+
+
 export class Popup {
     constructor(popupWrapper) {
         this._popup = popupWrapper;
@@ -19,6 +21,7 @@ export class Popup {
     }
 
     openPopup() {
+        // console.log('popup.js/openpopup', this._popup)
         this._popup.classList.add('form-popup_opened');
     }
 

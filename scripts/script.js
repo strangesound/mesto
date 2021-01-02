@@ -1,90 +1,112 @@
-import { Card } from './Card.js'
-import { initialCards } from './initialCards.js'
-// import { closePopup, openPopup, closeByEscape, closeByOverlayClick } from './utils.js'
-import { Popup } from './Popup.js'
-import { FormValidator } from './FormValidator.js'
-
+import { initialCards } from '../utils/initialCards.js';
+import { Card } from '../components/Card.js';
+import { Section } from '../components/Section.js';
+import { Popup } from '../components/Popup.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { FormValidator } from '../components/FormValidator.js'
+import { UserInfo } from '../components/UserInfo.js';
 
 const formEditUserInfoButton = document.querySelector('.avatar__edit-icon');
-const closeButtons = document.querySelectorAll('.form-popup__close-btn');
+// const closeButtons = document.querySelectorAll('.form-popup__close-btn');
 const formEditUserInfoWrapper = document.querySelector('.form-popup_type_edit');
 const formNameInput = document.querySelector('.form-popup__contact-info_name');
 const formJobInput = document.querySelector('.form-popup__contact-info_job');
 const pageName = document.querySelector('.avatar__head');
 const pageJob = document.querySelector('.avatar__subtitle');
-const formEditUserInfo = document.querySelector('.form-popup__form-edit');
-const formEditUserInfoSubmitButton = formEditUserInfo.querySelector('.form-popup__btn')
+// const formEditUserInfo = document.querySelector('.form-popup__form-edit');
+// const formEditUserInfoSubmitButton = formEditUserInfo.querySelector('.form-popup__btn')
 
-const cardSection = document.querySelector('.photo-grid');
+// const cardSection = document.querySelector('.photo-grid');
 
 const formAddCardWrapper = document.querySelector('.form-popup_type_add-card');
 const formAddCardButton = document.querySelector('.avatar__add-button');
 const cardName = document.querySelector('.form-popup__contact-info_card-name');
 const cardImgLink = document.querySelector('.form-popup__img-link');
 const formAddCard = document.querySelector('.form-popup__form-add-card');
-const formAddCardSubmitButton = formAddCard.querySelector('.form-popup__btn')
+// const formAddCardSelector = '.form-popup__form-add-card';
 
-function fillNameJob() {
-    formNameInput.value = pageName.textContent;
-    formJobInput.value = pageJob.textContent;
-}
+// const formAddCardSubmitButton = formAddCard.querySelector('.form-popup__btn')
 
-function editFormSubmitHandler(evt) {
-    evt.preventDefault();
-    pageName.textContent = formNameInput.value;
-    pageJob.textContent = formJobInput.value;
-    formEditUserInfoClass.closePopup();
-}
+// function fillNameJob() {
+//     formNameInput.value = pageName.textContent;
+//     formJobInput.value = pageJob.textContent;
+// }
 
-function addCardFormSubmitHandler(evt) {
-    evt.preventDefault();
+// function editFormSubmitHandler(evt) {
+//     evt.preventDefault();
+//     pageName.textContent = formNameInput.value;
+//     pageJob.textContent = formJobInput.value;
+//     formEditUserInfoClass.closePopup();
+// }
+
+
+
+// Создание начального массива карточек
+
+
+
+const cardsList = new Section({
+    data: initialCards,
+    renderer: (item) => {
+        const popupWithImageItem = new PopupWithImage(document.querySelector('.form-popup_image-opener'))
+        popupWithImageItem.setEventListeners();
+        const card = new Card(item, () => popupWithImageItem.openPopup(item), '#card__create');
+        const cardElement = card.generateCard();
+        cardsList.insertItemAfter(cardElement);
+    }
+}, '.photo-grid');
+
+cardsList.renderItems()
+
+
+
+// Форма добавления карточки
+
+const formAddCardClass = new PopupWithForm(formAddCardWrapper, () => {
     const newCardArray = {
         name: cardName.value,
         link: cardImgLink.value
     }
-    const card = new Card(newCardArray, '#card__create');
-    const cardElement = card.generateCard();
-    document.querySelector('.photo-grid').prepend(cardElement);
-    formAddCardClass.closePopup();
-}
+    const card = new Card(newCardArray, () => {
+        const popupWithImageItem2 = new PopupWithImage(document.querySelector('.form-popup_image-opener'))
+        popupWithImageItem2.setEventListeners();
+        popupWithImageItem2.openPopup(newCardArray)
+    }, '#card__create');
 
-// Создание начального массива карточек
-initialCards.forEach((item) => {
-    const card = new Card(item, '#card__create');
     const cardElement = card.generateCard();
-    document.querySelector('.photo-grid').append(cardElement);
+
+    const newSection = new Section({
+        data: newCardArray,
+        renderer: 'хз'
+    }, '.photo-grid');
+    newSection.insertItemBefore(cardElement)
 });
 
-
-// Обработчики событий
-
-const formAddCardClass = new Popup(formAddCardWrapper);
 formAddCardClass.setEventListeners();
-formEditUserInfo.addEventListener('submit', editFormSubmitHandler);
-
-const formEditUserInfoClass = new Popup(formEditUserInfoWrapper);
-formEditUserInfoClass.setEventListeners();
-formAddCard.addEventListener('submit', addCardFormSubmitHandler);
-
-
-formEditUserInfoButton.addEventListener('click', function () {
-    fillNameJob(formEditUserInfoWrapper);
-    formEditUserInfoClass.openPopup(formEditUserInfoWrapper);
-    formEditUserInfo.querySelector("#first-name-error").textContent = '';
-
-});
-
-
-
-
-formAddCardButton.addEventListener('click', function () {
+formAddCardButton.addEventListener('click', () => {
     formAddCard.reset()
     formAddCardClass.openPopup();
     addFormValidator.deactivateSubmitButton();
 });
 
 
+// Форма добавления редактирования имени
+const formEditUserInfoClass = new PopupWithForm(formEditUserInfoWrapper, () => {
+    pageName.textContent = formNameInput.value;
+    pageJob.textContent = formJobInput.value;
+});
 
+formEditUserInfoClass.setEventListeners();
+
+formEditUserInfoButton.addEventListener('click', () => {
+    formNameInput.value = pageName.textContent;
+    formJobInput.value = pageJob.textContent;
+    formEditUserInfoClass.openPopup();
+
+});
+
+// Конфиг для валидации
 const config = {
     formSelector: {
         formNameEditSelector: '.form-popup__form-edit',
