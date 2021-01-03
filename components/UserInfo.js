@@ -13,22 +13,22 @@
 
 export class UserInfo {
     constructor(userNameInHeader, userInfoInHeader){
-        this.userNameInHeader = userNameInHeader;
+        this._userNameInHeader = userNameInHeader;
         this._userInfoInHeader = userInfoInHeader;
     }
 
     getUserInfo(){
         return{
-            name: this._userNameInHeader.textcontent,
-            info: this._userInfoInHeader.textcontent
+            name: this._userNameInHeader.textContent,
+            info: this._userInfoInHeader.textContent
         }
         // Содержит публичный метод getUserInfo, который возвращает объект с данными пользователя. Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
 
 
     }
     setUserInfo(profileName, profileTitle) {
-        this._userNameInHeader.textcontent = profileName;
-        this._userInfoInHeader.textcontent = profileTitle;
+        this._userNameInHeader.textContent = profileName;
+        this._userInfoInHeader.textContent = profileTitle;
         // Содержит публичный метод setUserInfo, который принимает новые данные пользователя и добавляет их на страницу.
 
 
