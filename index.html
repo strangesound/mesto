@@ -2,7 +2,7 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
 
@@ -13,7 +13,7 @@
   <body class="body">
     <header class="header">
       <img
-        src="./images/mesto-logo.svg"
+        src="<%=require('./images/mesto-logo.svg')%>"
         alt="Логотип Место"
         class="header__logo"
       />
@@ -22,7 +22,7 @@
       <section class="avatar">
         <div class="avatar__person-wrapper">
           <img
-            src="./images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="Жак Кусто"
             class="avatar__kusto"
           />
@@ -42,10 +42,10 @@
         <template id="card__create">
           <div class="photo-grid__item">
             <button class="photo-grid__delete-btn">
-              <img src="./images/trash.svg" alt="Удалить" />
+              <img src="<%=require('./images/trash.svg')%>" alt="Удалить" />
             </button>
             <img
-              src="./images/image1.jpg"
+              src="#"
               alt="Временное"
               class="photo-grid__image"
             />
@@ -151,7 +151,7 @@
       <figure class="form-popup__image-opener-wrapper">
         <button class="form-popup__close-btn" type="button"></button>
         <img
-          src="./images/image1.jpg"
+          src="#"
           alt="Временное"
           class="form-popup__image-big"
         />
@@ -170,6 +170,6 @@
     <script type="module" src="./scripts/utils.js"></script>
     <script type="module" src="./scripts/Card.js"></script>
     <script type="module" src="./scripts/FormValidator.js"></script> -->
-    <script type="module" src="./scripts/script.js"></script>
+    <!-- <script type="module" src="./src/index.js"></script> -->
   </body>
 </html>
