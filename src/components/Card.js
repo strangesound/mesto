@@ -1,16 +1,3 @@
-import { PopupWithImage } from '../components/PopupWithImage.js'
-
-
-
-// Класс Card
-// Card нужно немного реорганизовать, если ещё не сделано при выполнении 7 проектной работы):
-// В конструктор передаётся:  { data, handleCardClick }, templateSelector
-// data - данные карточки. Почему данные карточки лучше передавать объектом, а не отдельными параметрами name, link. У карточки могут появиться новые поля - лайкнута ли она, количество лайков, автор карточки (в 9 проектной работе) и придётся менять вызов создания карточки во всей программе. Если же данные будут передаваться как объект, вызов создания карточки не изменится, так и будет передаваться объект, просто в нем будет чуть больше полей.
-// handleCardClick - функция, которая описывает поведение при нажатии на картинку. Внутри передаваемого колбэка должен быть вызов метода open экземпляра класса PopupWithImage
-// templateSelector - селектор темплейта карточки
-
-
-
 export class Card {
     constructor(data, handleCardClick, cardSelector) {
         this._createdCardImageAlt = data.name;
@@ -48,7 +35,7 @@ export class Card {
         });
 
         this._element.querySelector('.photo-grid__delete-btn').addEventListener('click', () => {
-            this._cardDeleteBtn();
+            this._handleDeleteCard();
         });
 
         this.cardImage.addEventListener('click', () => {
@@ -57,10 +44,7 @@ export class Card {
     }
 
     _handleCardClickHandler(){
-        // console.log('card/_handleCardClickHandler', this._createdCardImageAlt, this._createdCardImageSrc,  this._handleCardClick)
         this._handleCardClick(this._createdCardImageAlt, this._createdCardImageSrc)
-
-
     }
 
     _likeButton() {
@@ -68,15 +52,10 @@ export class Card {
             .classList.toggle('photo-grid__like_active');
     }
 
-    _cardDeleteBtn() {
-        this._element.closest('.photo-grid__item').remove();
+    _handleDeleteCard() {
+        this._element.remove();
+        this._element = null;
     }
-
-
-
-    // handleCardClick - функция, которая описывает поведение при нажатии на картинку. Внутри передаваемого колбэка должен быть вызов метода open экземпляра класса PopupWithImage
-
-
 };
 
 
