@@ -31,7 +31,7 @@ const popupWithImageItem = new PopupWithImage(document.querySelector('.form-popu
 popupWithImageItem.setEventListeners();
 
 let myId;
-const popupConfirm = new PopupConfirm(document.querySelector('.form-popup__delete-confirmation'));
+const popupConfirm = new PopupConfirm(document.querySelector('.form-popup_delete-confirmation'));
 popupConfirm.setEventListeners();
 
 const createCard = (data) => {
@@ -91,7 +91,7 @@ const createCard = (data) => {
 
 // Правим аватар
 const editAvatarbutton = document.querySelector('.avatar__image-wrapper');
-const formEditUserAvatarWrapper = document.querySelector('.form-popup__type-avatar-edit');
+const formEditUserAvatarWrapper = document.querySelector('.form-popup_type-avatar-edit');
 const editAvatarFormSubmitbutton = formEditUserAvatarWrapper.querySelector('.form-popup__btn');
 // console.log(editAvatarFormSubmitbutton.textContent, editAvatarFormSubmitbutton.value)
 

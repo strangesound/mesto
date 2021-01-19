@@ -2,8 +2,8 @@ const config = {
   formSelector: {
     formNameEditSelector: '.form-popup__form-edit',
     formCardAddSelector: '.form-popup__form-add-card',
-    formAvatarChangeImage: '.form-popup__type-avatar-edit',
-    formCardDeleteConfirmation: '.form-popup__delete-confirmation'
+    formAvatarChangeImage: '.form-popup_type-avatar-edit',
+    formCardDeleteConfirmation: '.form-popup_delete-confirmation'
   },
   inputSelector: '.form-popup__contact-info',
   submitButtonSelector: '.form-popup__btn',
