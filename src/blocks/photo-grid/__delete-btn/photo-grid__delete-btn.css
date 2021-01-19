@@ -9,9 +9,15 @@
   background-color:transparent;
   transition: 0.3s;
   z-index: 50;
+  /* display: none; */
+
 }
 
 .photo-grid__delete-btn:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+.display{
+  display: none;
 }

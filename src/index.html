@@ -21,17 +21,24 @@
     <main class="main">
       <section class="avatar">
         <div class="avatar__person-wrapper">
+          <div class="avatar__image-wrapper">
           <img
-            src="<%=require('./images/avatar.jpg')%>"
-            alt="Жак Кусто"
+            src="#"
+            alt="#"
             class="avatar__kusto"
           />
+          <img
+          src="<%=require('./images/edit.svg')%>"
+          alt="редактировать аватар"
+          class="avatar__edit-avatar"
+        />
+        </div>
           <div class="avatar__name-wrapper">
             <div class="avatar__name-icon-wrapper">
-              <h1 class="avatar__head">Жан Жак Кусто</h1>
+              <h1 class="avatar__head"></h1>
               <button type="button" class="avatar__edit-icon"></button>
             </div>
-            <p class="avatar__subtitle">Исследователь океана</p>
+            <p class="avatar__subtitle"></p>
           </div>
         </div>
         <button type="button" class="avatar__add-button"></button>
@@ -51,7 +58,10 @@
             />
             <div class="photo-grid__title">
               <h2 class="photo-grid__name"></h2>
+              <div class="photo-grid__like-wrapper">
               <button type="button" class="photo-grid__like"></button>
+              <p class="photo-grid__like-counter">6</p>
+            </div>
             </div>
           </div>
         </template>
@@ -140,11 +150,57 @@
           <span id="link-url-error" class="error"></span>
 
         </fieldset>
-        <button class="form-popup__btn" type="submit" value="Сохранить">
+        <button class="form-popup__btn" type="submit" value="Создать">
           Создать
         </button>
       </form>
     </section>
+
+
+    <!-- Форма редактирования аватара -->
+    <section class="form-popup form-popup__type-avatar-edit">
+      <form
+        class="form-popup__form form-popup__type-avatar-edit"
+        name="avatar-edit-picture"
+        novalidate
+      >
+        <button class="form-popup__close-btn" type="button"></button>
+        <h2 class="form-popup__head">Обновить аватар</h2>
+        <fieldset class="form-popup__contact-wrapper">
+          
+          <input
+            class="form-popup__contact-info form-popup__img-link-avatar"
+            placeholder="Ссылка на картинку"
+            type="url"
+            name="link-url"
+            id="link-url"
+            required
+            autocomplete="off"
+          />
+          <span id="link-url-error" class="error"></span>
+
+        </fieldset>
+        <button class="form-popup__btn" type="submit" value="Создать">
+          Создать
+        </button>
+      </form>
+    </section>
+
+     <!-- Форма подтверждения удаления карточки -->
+     <section class="form-popup form-popup__delete-confirmation">
+      <form
+        class="form-popup__form form-popup__delete-confirmation"
+        name="delete-card"
+        novalidate
+      >
+        <button class="form-popup__close-btn" type="button"></button>
+        <h2 class="form-popup__head">Вы уверены?</h2>
+        
+        <button class="form-popup__btn" type="submit" value="Да">Да</button>
+      </form>
+    </section>
+
+
 
     <!-- Попап картинки -->
     <section class="form-popup form-popup_image-opener">

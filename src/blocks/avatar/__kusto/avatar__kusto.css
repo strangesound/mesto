@@ -1,8 +1,47 @@
-.avatar__kusto {
-  border-radius: 50%;
+.avatar__image-wrapper {
+  position: relative;
   width: 120px;
   height: 120px;
 }
+.avatar__kusto {
+  border-radius: 50%;
+  object-fit: cover;
+  transition: 0.3s;
+  width: 120px;
+  height: 120px;
+}
+
+.avatar__image-wrapper:hover .avatar__kusto {
+  opacity: .3;
+}
+
+
+
+.avatar__image-wrapper:hover {
+  /* background-image: url("../../../images/edit.svg"); */
+  opacity: 1;
+  cursor: pointer;
+  transition: 0.3s;
+
+}
+
+.avatar__image-wrapper:hover .avatar__edit-avatar {
+  opacity: 1;
+
+}
+
+.avatar__edit-avatar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  transition: .3s;
+
+}
+
 @media screen and (max-width: 768px) {
   .avatar__kusto {
     margin-bottom: 20px;
