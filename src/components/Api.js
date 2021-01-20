@@ -2,7 +2,6 @@ export class Api {
   constructor({ address, token }) {
     this._address = address;
     this._token = token;
-    // this._groupId = groupId;
   }
 
 
@@ -14,10 +13,7 @@ export class Api {
       }
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        return this._returnResInJSON(res);
       })
   }
 
@@ -37,10 +33,7 @@ export class Api {
     })
 
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        return this._returnResInJSON(res);
       })
   }
 
@@ -51,10 +44,7 @@ export class Api {
       }
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        return this._returnResInJSON(res);
       })
   }
 
@@ -69,7 +59,10 @@ export class Api {
         name: name,
         about: job
       })
-    });
+    })
+      .then((res) => {
+        return this._returnResInJSON(res);
+      })
   }
 
   patchAvatarImage(imageUrl) {
@@ -82,7 +75,10 @@ export class Api {
       body: JSON.stringify({
         avatar: imageUrl
       })
-    });
+    })
+      .then((res) => {
+        return this._returnResInJSON(res);
+      })
   }
 
   setLike(cardId) {
@@ -93,10 +89,7 @@ export class Api {
       }
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        return this._returnResInJSON(res);
       })
   }
 
@@ -109,10 +102,7 @@ export class Api {
       }
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        return this._returnResInJSON(res);
       })
   }
 
@@ -125,11 +115,15 @@ export class Api {
       }
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        return this._returnResInJSON(res);
       })
+  }
+
+  _returnResInJSON(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(new Error(`Что-то пошло не так: ${res.status}`));
   }
 
 }

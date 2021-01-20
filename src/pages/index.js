@@ -8,6 +8,7 @@ import { FormValidator } from '../components/FormValidator.js'
 import { UserInfo } from '../components/UserInfo.js';
 import { config } from '../components/constants.js';
 import { Api } from '../components/Api.js';
+import { renderLoading } from '../utils/utils.js';
 
 import './index.css';
 
@@ -93,23 +94,20 @@ const createCard = (data) => {
 const editAvatarbutton = document.querySelector('.avatar__image-wrapper');
 const formEditUserAvatarWrapper = document.querySelector('.form-popup_type-avatar-edit');
 const editAvatarFormSubmitbutton = formEditUserAvatarWrapper.querySelector('.form-popup__btn');
-// console.log(editAvatarFormSubmitbutton.textContent, editAvatarFormSubmitbutton.value)
 
 const formEditAvatar = new PopupWithForm(formEditUserAvatarWrapper, () => {
-  formEditAvatar.renderLoading(true, editAvatarFormSubmitbutton);
+  renderLoading(true, editAvatarFormSubmitbutton);
 
   api.patchAvatarImage(formAvatarURLInput.value)
     .then((res) => {
-      return res.json()
-    })
-    .then((res) => {
       userInfo.setAvatarImage(res.avatar)
+      formEditAvatar.closePopup()
     })
     .catch((err) => {
       console.log('patchAvatarImage', err)
     })
     .finally(() => {
-      formEditAvatar.renderLoading(false, editAvatarFormSubmitbutton);
+      renderLoading(false, editAvatarFormSubmitbutton);
     })
 });
 
@@ -125,25 +123,26 @@ editAvatarbutton.addEventListener('click', () => {
 
 
 // Форма добавления карточки
-
+const formAddCardSubmitButton = document.querySelector('.form-popup_type_add-card .form-popup__btn');
 const formAddCardClass = new PopupWithForm(formAddCardWrapper, () => {
   const newCardArray = {
     name: cardName.value,
     link: cardImgLink.value
   }
+  renderLoading(true, formAddCardSubmitButton);
 
 
   api.addNewCard(newCardArray)
     .then((res) => {
-      // console.log(res)
       const newCard = createCard(res)
-
-      // console.log(newCard.generateCard();)
       cardsList.insertItemBefore(newCard.generateCard())
-
     })
+    .then(() => formAddCardClass.closePopup())
     .catch((err) => {
       console.log('Ошибка в addNewCard', err)
+    })
+    .finally(() => {
+      renderLoading(false, formAddCardSubmitButton);
     })
 
 });
@@ -158,23 +157,23 @@ formAddCardButton.addEventListener('click', () => {
 
 // Форма добавления редактирования имени
 const userInfo = new UserInfo(pageName, pageJob, avatarImage);
+const formEditUserInfoSubmitButton = formEditUserInfoWrapper.querySelector('.form-popup__btn');
+
+
 
 const formEditUserInfoClass = new PopupWithForm(formEditUserInfoWrapper, () => {
-  // userInfo.setUserInfo(formNameInput.value, formJobInput.value)
-  // задаём кнопке отправки текст "Сохранение..."
+  renderLoading(true, formEditUserInfoSubmitButton);
   api.patchUserInfo(formNameInput.value, formJobInput.value)
     .then((res) => {
-      return res.json()
-    })
-    .then((res) => {
-      userInfo.setUserInfo(res.name, res.about, res.avatar)
+      userInfo.setUserInfo(res.name, res.about, res.avatar);
+      formEditUserInfoClass.closePopup();
     })
     .catch((err) => {
       console.log('Ошибка в patchUserInfo', err)
     })
-  // .finally(() => {
-  //   возвращаем обратно текст кнопки
-  // 
+    .finally(() => {
+      renderLoading(false, formEditUserInfoSubmitButton);
+    }) 
 });
 
 
@@ -228,12 +227,11 @@ Promise.all([
   api.getUserInfo(),
   api.getInitialCards()
 ])
-  .then((values) => {    //
-    userInfo.setUserInfo(values[0].name, values[0].about, values[0].avatar);
-    myId = values[0]._id
-    cardsList.renderItems(values[1])
-    // console.log(cardsList, values[1])
-  })
+  .then(([userData, cardsArray]) => {    //
+    userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
+    myId = userData._id
+    cardsList.renderItems(cardsArray)
+  }) 
   .catch((err) => {
     console.log(err)
   })

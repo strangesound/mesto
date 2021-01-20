@@ -40,15 +40,7 @@ export class Popup {
   }
 
 
-  renderLoading(isLoading, button) {
-    const initialButtonText = button.value;
-    if (isLoading) {
-      button.textContent = 'Сохраняется…';
-    //   content.classList.add('content_hidden');
-    }
-    else{
-      button.textContent = initialButtonText;
-    }}
+
   
 
 }
